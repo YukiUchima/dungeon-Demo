@@ -232,6 +232,7 @@ public class RoomGame {
 
         public void actionPerformed(ActionEvent event){
             loginPanel.setVisible(false);
+//            System.out.println("test");
 
             GameScreen();
         }
