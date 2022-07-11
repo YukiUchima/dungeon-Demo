@@ -31,7 +31,7 @@ public class UI {
 
     public void createUI(RoomGame.ChoiceHandler msHandler) {
         int width = 1200;
-        int height = 900;
+        int height = 700;
 
 //      MAIN WINDOW SCREEN      MAIN WINDOW SCREEN      MAIN WINDOW SCREEN      MAIN WINDOW SCREEN
 //      MAIN WINDOW SCREEN      MAIN WINDOW SCREEN      MAIN WINDOW SCREEN      MAIN WINDOW SCREEN
@@ -57,7 +57,7 @@ public class UI {
         gameTitlePanel.setBackground(Color.yellow);
 
         gameTitleLbl = new JLabel();
-        gameTitleLbl.setText("GAME TITLE");
+        gameTitleLbl.setText("CSC205 UI/UX Project");
         gameTitleLbl.setForeground(Color.black);
         gameTitleLbl.setFont(titleFont);
         gameTitlePanel.add(gameTitleLbl);
@@ -141,7 +141,7 @@ public class UI {
 //          GAME SCREEN          GAME SCREEN          GAME SCREEN          GAME SCREEN          GAME SCREEN
 
          mainPanel = new JPanel();
-         mainPanel.setBounds(20,20, 600, 400);
+         mainPanel.setBounds(100,20, 600, 400);
          mainPanel.setBackground(Color.lightGray);
          mainPanel.setBorder(border);
 
@@ -155,7 +155,7 @@ public class UI {
 
 //         `````````````````````````````````````````````````PLAYER Panel```````````````````````````````````````````````
          playerPanel = new JPanel();
-         playerPanel.setBounds(620, 20, 400, 400);
+         playerPanel.setBounds(700, 20, 400, 400);
          playerPanel.setLayout(null);
          playerPanel.setBackground(Color.darkGray);
          playerPanel.setBorder(border);
@@ -212,12 +212,12 @@ public class UI {
 
 //         `````````````````````````````````````````````````OUTPUT Panel```````````````````````````````````````````````
          outputPanel = new JPanel();
-         outputPanel.setBounds(20, 420, 600,200);
+         outputPanel.setBounds(100, 420, 600,200);
          outputPanel.setBackground(Color.lightGray);
          outputPanel.setBorder(border);
 
          commandPanel = new JPanel();
-         commandPanel.setBounds(620, 420, 400, 200);
+         commandPanel.setBounds(700, 420, 400, 200);
          commandPanel.setBackground(Color.lightGray);
          commandPanel.setBorder(border);
          commandPanel.setLayout(new GridLayout(2,2));

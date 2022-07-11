@@ -11,8 +11,10 @@ public class RoomGame {
     ChoiceHandler msHandler = new ChoiceHandler();
     UI ui = new UI();
     VisibilityManager vm = new VisibilityManager(ui);
+    Story story = new Story(this, ui, vm);
 
 //        Story story = new Story(this, ui, vm);
+//
 
     public static void main(String[] args) {
         new RoomGame();
@@ -20,6 +22,7 @@ public class RoomGame {
 
     public RoomGame() {
         ui.createUI(msHandler); //create window frame
+        story.defaultSetup();
         vm.showTitleScreen();   //show login screen
     }
 
