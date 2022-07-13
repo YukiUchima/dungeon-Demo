@@ -15,19 +15,22 @@ public class UI {
     JPanel gameTitlePanel, usernamePanel, passwordPanel, signUpPanel, signInPanel, signPanel;
 //    Main Game Panels
     JPanel mainPanel, playerPanel, statsPanel, inventoryPanel, outputPanel, commandPanel;
-    JTextArea mainTextArea;
+    JTextArea mainTextArea, outputTextArea;
     JLabel gameTitleLbl, usernameLbl, passwordLbl, healthLabel,currentHealthLabel, weaponLabel;
-    JLabel currentWeaponLabel, item1Label,item2Label,item3Label,item4Label;
+    JLabel currentWeaponLabel, item1Label,item2Label,item3Label,item4Label, item1, item2, item3, item4;
     JTextField usernameTf;
     JPasswordField passwordTf;
     JButton signUpBtn, signInBtn, choice1, choice2,choice3,choice4;
 
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 60);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 22);
-    Font choiceFont = new Font("Times New Roman", Font.PLAIN, 26);
+    Font choiceFont = new Font("Times New Roman", Font.PLAIN, 22);
     Font loginFont = new Font("Lucida Grande", Font.PLAIN, 24);
+    Font itemFont = new Font("Times New Roman", Font.PLAIN, 18);
 
     Border border = new LineBorder(Color.white, 2, true);
+    Border inventoryBorder = new LineBorder(Color.black, 1, true);
+
 
     public void createUI(RoomGame.ChoiceHandler msHandler) {
         int width = 1200;
@@ -54,7 +57,7 @@ public class UI {
         int gameTitleXCenter = width/2 - (gameTitleWidth/2);
         gameTitlePanel = new JPanel();
         gameTitlePanel.setBounds(gameTitleXCenter,100,gameTitleWidth,gameTitleHeight);
-        gameTitlePanel.setBackground(Color.yellow);
+        gameTitlePanel.setBackground(Color.lightGray);
 
         gameTitleLbl = new JLabel();
         gameTitleLbl.setText("CSC205 UI/UX Project");
@@ -132,7 +135,6 @@ public class UI {
         signInBtn.setFocusPainted(false);
         signInBtn.addActionListener(msHandler);
         signInBtn.setActionCommand("signIn");
-//        signInPanel.add(signInBtn);
 
         signPanel.add(signUpBtn);
         signPanel.add(signInBtn);
@@ -173,7 +175,7 @@ public class UI {
 
          currentHealthLabel = new JLabel("20");
          currentHealthLabel.setFont(normalFont);
-         currentHealthLabel.setForeground(Color.white);
+         currentHealthLabel.setForeground(Color.lightGray);
          statsPanel.add(currentHealthLabel);
 //         `````````````````````````````````````````````````WEAPON Panel```````````````````````````````````````````````
          weaponLabel = new JLabel("Weapon: ");
@@ -183,80 +185,121 @@ public class UI {
 
          currentWeaponLabel = new JLabel("None");
          currentWeaponLabel.setFont(normalFont);
-         currentWeaponLabel.setForeground(Color.white);
+         currentWeaponLabel.setForeground(Color.lightGray);
          statsPanel.add(currentWeaponLabel);
 //         `````````````````````````````````````````````````INVENTORY Panel````````````````````````````````````````````
          inventoryPanel = new JPanel();
-         inventoryPanel.setBounds(40,80, 320, 100);
-         inventoryPanel.setBackground(Color.darkGray);
+         inventoryPanel.setBounds(40,120, 320, 200);
+         inventoryPanel.setBackground(Color.yellow);
          inventoryPanel.setForeground(Color.white);
-         inventoryPanel.setLayout(new GridLayout(2,2));
+         inventoryPanel.setLayout(new GridLayout(4,2));
+//         inventoryPanel.setBorder(inventoryBorder);
          playerPanel.add(inventoryPanel);
 
-         item1Label = new JLabel("Item1");
+         item1Label = new JLabel(" Item 1:");
          item1Label.setFont(normalFont);
-         inventoryPanel.add(item1Label);
+         item1Label.setBorder(inventoryBorder);
 
-         item2Label = new JLabel("Item2");
+         item2Label = new JLabel(" Item 2:");
          item2Label.setFont(normalFont);
-         inventoryPanel.add(item2Label);
+         item2Label.setBorder(inventoryBorder);
 
-         item3Label = new JLabel("Item3");
+         item3Label = new JLabel(" Item 3:");
          item3Label.setFont(normalFont);
-         inventoryPanel.add(item3Label);
+         item3Label.setBorder(inventoryBorder);
 
-         item4Label = new JLabel("Item4");
+         item4Label = new JLabel(" Item 4:");
          item4Label.setFont(normalFont);
-         inventoryPanel.add(item4Label);
+         item4Label.setBorder(inventoryBorder);
 
+         item1 = new JLabel("Telephone", SwingConstants.CENTER);
+         item1.setFont(itemFont);
+         item1.setForeground(Color.blue);
+         item1.setBorder(inventoryBorder);
+
+         item2 = new JLabel("Telephone", SwingConstants.CENTER);
+         item2.setFont(itemFont);
+         item2.setForeground(Color.blue);
+         item2.setBorder(inventoryBorder);
+
+         item3 = new JLabel("Telephone", SwingConstants.CENTER);
+         item3.setFont(itemFont);
+         item3.setForeground(Color.blue);
+         item3.setBorder(inventoryBorder);
+
+         item4 = new JLabel("Telephone", SwingConstants.CENTER);
+         item4.setFont(itemFont);
+         item4.setForeground(Color.blue);
+         item4.setBorder(inventoryBorder);
+
+        inventoryPanel.add(item1Label);
+        inventoryPanel.add(item2Label);
+        inventoryPanel.add(item1);
+        inventoryPanel.add(item2);
+
+        inventoryPanel.add(item3Label);
+        inventoryPanel.add(item4Label);
+        inventoryPanel.add(item3);
+        inventoryPanel.add(item4);
 
 //         `````````````````````````````````````````````````OUTPUT Panel```````````````````````````````````````````````
          outputPanel = new JPanel();
          outputPanel.setBounds(100, 420, 600,200);
-         outputPanel.setBackground(Color.lightGray);
+         outputPanel.setBackground(Color.black);
          outputPanel.setBorder(border);
 
+
+         outputTextArea = new JTextArea();
+         outputTextArea.setBounds(40,40, 520, 120);
+         outputTextArea.setBackground(Color.black);
+         outputTextArea.setForeground(Color.white);
+         outputTextArea.setEditable(false);
+         outputTextArea.setFont(normalFont);
+         outputTextArea.setLineWrap(true);
+         outputPanel.add(outputTextArea);
+
+
+//         `````````````````````````````````````````````````COMMAND Panel```````````````````````````````````````````````
          commandPanel = new JPanel();
          commandPanel.setBounds(700, 420, 400, 200);
          commandPanel.setBackground(Color.lightGray);
          commandPanel.setBorder(border);
          commandPanel.setLayout(new GridLayout(2,2));
 
-//         `````````````````````````````````````````````````COMMAND Panel```````````````````````````````````````````````
-         choice1 = new JButton("Move");
+         choice1 = new JButton("");
          choice1.setBackground(Color.black);
          choice1.setForeground(Color.white);
          choice1.setFont(choiceFont);
          choice1.setFocusPainted(false);
          choice1.setVisible(true);
-//         choice1.addActionListener(choiceHandler);
+         choice1.addActionListener(msHandler);
          choice1.setActionCommand("c1");
          commandPanel.add(choice1);
 
-         choice2 = new JButton("Loot");
+         choice2 = new JButton("");
          choice2.setBackground(Color.black);
          choice2.setForeground(Color.white);
          choice2.setFont(choiceFont);
          choice2.setFocusPainted(false);
-//         choice2.addActionListener(choiceHandler);
+         choice2.addActionListener(msHandler);
          choice2.setActionCommand("c2");
          commandPanel.add(choice2);
 
-         choice3 = new JButton("Quest");
+         choice3 = new JButton("");
          choice3.setBackground(Color.black);
          choice3.setForeground(Color.white);
          choice3.setFont(choiceFont);
          choice3.setFocusPainted(false);
-//         choice3.addActionListener(choiceHandler);
+         choice3.addActionListener(msHandler);
          choice3.setActionCommand("c3");
          commandPanel.add(choice3);
 
-         choice4 = new JButton("-------");
+         choice4 = new JButton("");
          choice4.setBackground(Color.black);
          choice4.setForeground(Color.white);
          choice4.setFont(choiceFont);
          choice4.setFocusPainted(false);
-//         choice4.addActionListener(choiceHandler);
+         choice4.addActionListener(msHandler);
          choice4.setActionCommand("c4");
          commandPanel.add(choice4);
 

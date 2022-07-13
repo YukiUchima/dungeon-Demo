@@ -10,14 +10,14 @@ import package02.Char_Type;
         public Boss1(String name) {
             this.name = name;
             setStrength(6);      //predetermined STRENGTH by char type
-            setHealth(8);        //predetermined HEALTH by char type
+            setHealth(45);        //predetermined HEALTH by char type
             setDefense();
         }
 
         @Override
         public String classType() {
-            setCharClass("Bloated Frog Monster");
-            charClassDesc = getCharClass() + "\n\t'Slimy frogs that can increase their size at will, croaks can cause disorientation'";
+            setCharClass("Monster");
+            charClassDesc = getCharClass() + "\n\t'Slept in the chamber slumbering while undisturbed for centuries...'";
             return charClassDesc;
         }
     }
