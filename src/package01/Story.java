@@ -189,6 +189,7 @@ public class Story {
 //    LEFT DOOR         LEFT DOOR         LEFT DOOR         LEFT DOOR         LEFT DOOR---------------------------------
 //    LEFT DOOR         LEFT DOOR         LEFT DOOR         LEFT DOOR         LEFT DOOR---------------------------------
     public void leftDoor(){
+
         if(enteredLeft < 1) {
             ui.mainTextArea.setText("You decide to walk cautiously to the left door and" +
                     "\n    look around you, where you see a note on a" +

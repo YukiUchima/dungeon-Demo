@@ -88,7 +88,7 @@ public class UI {
         usernameTf.setEditable(true);
         usernameTf.setBounds(userTFXCenter,320, userTFwidth,userTFheight);
 
-        int passwordWidth = 300;
+        int passwordWidth = 400;
         int passwordHeight = 40;
         int passwordXCenter = width/2 - passwordWidth/2;
         passwordPanel = new JPanel();
