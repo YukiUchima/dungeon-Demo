@@ -22,6 +22,7 @@ public class VisibilityManager {
         ui.inventoryPanel.setVisible(false);
         ui.outputPanel.setVisible(false);
         ui.commandPanel.setVisible(false);
+        ui.savePanel.setVisible(false);
     }
 
     public void showGameScreen(){
@@ -32,12 +33,21 @@ public class VisibilityManager {
         ui.inventoryPanel.setVisible(true);
         ui.outputPanel.setVisible(true);
         ui.commandPanel.setVisible(true);
+        ui.savePanel.setVisible(true);
 
 //       Hide Title screen
         ui.gameTitlePanel.setVisible(false);
         ui.usernamePanel.setVisible(false);
         ui.passwordPanel.setVisible(false);
         ui.signPanel.setVisible(false);
+
+    }
+
+    public void manualInput(){
+//        Hide button choices
+        ui.commandPanel.setVisible(false);
+
+//        Show Input Text Area
 
     }
 }

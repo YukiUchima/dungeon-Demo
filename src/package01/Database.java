@@ -7,7 +7,7 @@ public class Database {
     private static Connection c = null;
     private static Statement stmt = null;
 
-    public static void main(String[] args) {
+    public void initializeDatabase(){
 
 
         //connect to database
@@ -29,7 +29,8 @@ public class Database {
 		//create login table
 		try {
 			stmt = c.createStatement();
-			String sql = "create table IF NOT EXISTS userInfo (USERNAME VARCHAR(200), PASSWORD VARCHAR(200))";
+			String sql = "create table IF NOT EXISTS userInfo (user_id serial NOT NULL, USERNAME VARCHAR(20), " +
+                    "PASSWORD VARCHAR(20), currentHealth INTEGER, currentWeapon VARCHAR(20) );";
 		    stmt.executeUpdate(sql);
 			stmt.close();
 			c.close();
@@ -42,7 +43,7 @@ public class Database {
 		}
 
     }
-    public static void insertLoginInfo(String user, String pass) {
+    public static void signUp(String user, String pass) {
         try {
             stmt = c.createStatement();
 
@@ -74,7 +75,7 @@ public class Database {
         }
 
     }
-    public static void checkUserInfo(String user, String pass) {
+    public static void logIn(String user, String pass) {
         try {
             stmt = c.createStatement();
 

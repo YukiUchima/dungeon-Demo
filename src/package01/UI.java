@@ -14,22 +14,24 @@ public class UI {
 //    Title screen panels
     JPanel gameTitlePanel, usernamePanel, passwordPanel, signUpPanel, signInPanel, signPanel;
 //    Main Game Panels
-    JPanel mainPanel, playerPanel, statsPanel, inventoryPanel, outputPanel, commandPanel;
+    JPanel mainPanel, playerPanel, statsPanel, inventoryPanel, outputPanel, commandPanel, savePanel;
     JTextArea mainTextArea, outputTextArea;
-    JLabel gameTitleLbl, usernameLbl, passwordLbl, healthLabel,currentHealthLabel, weaponLabel;
+    JLabel gameTitleLbl, usernameLbl, passwordLbl, healthLabel,currentHealthLabel, weaponLabel, inventoryTitleLabel;
     JLabel currentWeaponLabel, item1Label,item2Label,item3Label,item4Label, item1, item2, item3, item4;
+    JLabel blank1, blank3, blank5, blank7, blank9;
+    JButton signUpBtn, signInBtn, northBtn, eastBtn,southBtn,westBtn, saveBtn, quitBtn;
     JTextField usernameTf;
     JPasswordField passwordTf;
-    JButton signUpBtn, signInBtn, choice1, choice2,choice3,choice4;
 
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 60);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 22);
-    Font choiceFont = new Font("Times New Roman", Font.PLAIN, 22);
+    Font choiceFont = new Font("Times New Roman", Font.PLAIN, 26);
     Font loginFont = new Font("Lucida Grande", Font.PLAIN, 24);
     Font itemFont = new Font("Times New Roman", Font.PLAIN, 18);
+    Font savePanelFont = new Font("Times New Roman", Font.PLAIN, 18);
 
     Border border = new LineBorder(Color.white, 2, true);
-    Border inventoryBorder = new LineBorder(Color.black, 1, true);
+    Border inventoryBorder = new LineBorder(Color.lightGray, 1, true);
 
 
     public void createUI(RoomGame.ChoiceHandler msHandler) {
@@ -57,10 +59,10 @@ public class UI {
         int gameTitleXCenter = width/2 - (gameTitleWidth/2);
         gameTitlePanel = new JPanel();
         gameTitlePanel.setBounds(gameTitleXCenter,100,gameTitleWidth,gameTitleHeight);
-        gameTitlePanel.setBackground(Color.lightGray);
+        gameTitlePanel.setBackground(Color.yellow);
 
         gameTitleLbl = new JLabel();
-        gameTitleLbl.setText("CSC205 UI/UX Project");
+        gameTitleLbl.setText("Dungeons are so 90's");
         gameTitleLbl.setForeground(Color.black);
         gameTitleLbl.setFont(titleFont);
         gameTitlePanel.add(gameTitleLbl);
@@ -144,13 +146,13 @@ public class UI {
 
          mainPanel = new JPanel();
          mainPanel.setBounds(100,20, 600, 400);
-         mainPanel.setBackground(Color.lightGray);
+         mainPanel.setBackground(Color.black);
          mainPanel.setBorder(border);
 
          mainTextArea = new JTextArea("Fight Area\nNavigation UI");
-         mainTextArea.setBounds(20,20, 560, 560);
-         mainTextArea.setBackground(Color.lightGray);
-         mainTextArea.setForeground(Color.darkGray);
+         mainTextArea.setBounds(40,20, 560, 560);
+         mainTextArea.setBackground(Color.black);
+         mainTextArea.setForeground(Color.white);
          mainTextArea.setFont(normalFont);
          mainTextArea.setLineWrap(true);
          mainPanel.add(mainTextArea);
@@ -159,12 +161,12 @@ public class UI {
          playerPanel = new JPanel();
          playerPanel.setBounds(700, 20, 400, 400);
          playerPanel.setLayout(null);
-         playerPanel.setBackground(Color.darkGray);
+         playerPanel.setBackground(Color.black);
          playerPanel.setBorder(border);
 //         `````````````````````````````````````````````````STATS Panel```````````````````````````````````````````````
          statsPanel = new JPanel();
          statsPanel.setBounds(10,20, 380, 40);
-         statsPanel.setBackground(Color.darkGray);
+         statsPanel.setBackground(Color.black);
          statsPanel.setLayout(new GridLayout(1, 4));
          playerPanel.add(statsPanel);
 //         `````````````````````````````````````````````````HEALTH Label```````````````````````````````````````````````
@@ -175,7 +177,7 @@ public class UI {
 
          currentHealthLabel = new JLabel("20");
          currentHealthLabel.setFont(normalFont);
-         currentHealthLabel.setForeground(Color.lightGray);
+         currentHealthLabel.setForeground(Color.green);
          statsPanel.add(currentHealthLabel);
 //         `````````````````````````````````````````````````WEAPON Panel```````````````````````````````````````````````
          weaponLabel = new JLabel("Weapon: ");
@@ -185,11 +187,19 @@ public class UI {
 
          currentWeaponLabel = new JLabel("None");
          currentWeaponLabel.setFont(normalFont);
-         currentWeaponLabel.setForeground(Color.lightGray);
+         currentWeaponLabel.setForeground(Color.white);
          statsPanel.add(currentWeaponLabel);
 //         `````````````````````````````````````````````````INVENTORY Panel````````````````````````````````````````````
-         inventoryPanel = new JPanel();
-         inventoryPanel.setBounds(40,120, 320, 200);
+        inventoryTitleLabel = new JLabel("Inventory");
+        inventoryTitleLabel.setBounds(40,120, 320, 40);
+        inventoryTitleLabel.setBackground(Color.lightGray);
+        inventoryTitleLabel.setForeground(Color.white);
+        inventoryTitleLabel.setFont(normalFont);
+        inventoryTitleLabel.setBorder(inventoryBorder);
+        playerPanel.add(inventoryTitleLabel);
+
+        inventoryPanel = new JPanel();
+         inventoryPanel.setBounds(40,160, 320, 200);
          inventoryPanel.setBackground(Color.yellow);
          inventoryPanel.setForeground(Color.white);
          inventoryPanel.setLayout(new GridLayout(4,2));
@@ -250,7 +260,7 @@ public class UI {
 
 
          outputTextArea = new JTextArea();
-         outputTextArea.setBounds(40,40, 520, 120);
+         outputTextArea.setBounds(10,40, 520, 120);
          outputTextArea.setBackground(Color.black);
          outputTextArea.setForeground(Color.white);
          outputTextArea.setEditable(false);
@@ -261,49 +271,99 @@ public class UI {
 
 //         `````````````````````````````````````````````````COMMAND Panel```````````````````````````````````````````````
          commandPanel = new JPanel();
-         commandPanel.setBounds(700, 420, 400, 200);
-         commandPanel.setBackground(Color.lightGray);
+         commandPanel.setBounds(700, 420, 400, 140);
+         commandPanel.setBackground(Color.black);
          commandPanel.setBorder(border);
-         commandPanel.setLayout(new GridLayout(2,2));
+         commandPanel.setLayout(new GridLayout(3,3));
 
-         choice1 = new JButton("");
-         choice1.setBackground(Color.black);
-         choice1.setForeground(Color.white);
-         choice1.setFont(choiceFont);
-         choice1.setFocusPainted(false);
-         choice1.setVisible(true);
-         choice1.addActionListener(msHandler);
-         choice1.setActionCommand("c1");
-         commandPanel.add(choice1);
+         blank1 = new JLabel("");
+         blank1.setBackground(Color.black);
+         blank3 = new JLabel();
+         blank3.setBackground(Color.black);
+         blank5 = new JLabel();
+         blank5.setBackground(Color.black);
+         blank7 = new JLabel();
+         blank7.setBackground(Color.black);
+         blank9 = new JLabel();
+         blank9.setBackground(Color.black);
 
-         choice2 = new JButton("");
-         choice2.setBackground(Color.black);
-         choice2.setForeground(Color.white);
-         choice2.setFont(choiceFont);
-         choice2.setFocusPainted(false);
-         choice2.addActionListener(msHandler);
-         choice2.setActionCommand("c2");
-         commandPanel.add(choice2);
+         northBtn = new JButton("North");
+         northBtn.setBackground(Color.black);
+         northBtn.setForeground(Color.white);
+         northBtn.setBorder(null);
+         northBtn.setFont(choiceFont);
+         northBtn.setFocusPainted(false);
+         northBtn.setVisible(true);
+         northBtn.addActionListener(msHandler);
+         northBtn.setActionCommand("c1");
 
-         choice3 = new JButton("");
-         choice3.setBackground(Color.black);
-         choice3.setForeground(Color.white);
-         choice3.setFont(choiceFont);
-         choice3.setFocusPainted(false);
-         choice3.addActionListener(msHandler);
-         choice3.setActionCommand("c3");
-         commandPanel.add(choice3);
+         eastBtn = new JButton("East");
+         eastBtn.setBackground(Color.black);
+         eastBtn.setForeground(Color.white);
+         eastBtn.setBorder(null);
+         eastBtn.setFont(choiceFont);
+         eastBtn.setFocusPainted(false);
+         eastBtn.addActionListener(msHandler);
+         eastBtn.setActionCommand("c2");
 
-         choice4 = new JButton("");
-         choice4.setBackground(Color.black);
-         choice4.setForeground(Color.white);
-         choice4.setFont(choiceFont);
-         choice4.setFocusPainted(false);
-         choice4.addActionListener(msHandler);
-         choice4.setActionCommand("c4");
-         commandPanel.add(choice4);
+         southBtn = new JButton("South");
+         southBtn.setBackground(Color.black);
+         southBtn.setForeground(Color.white);
+         southBtn.setBorder(null);
+         southBtn.setFont(choiceFont);
+         southBtn.setFocusPainted(false);
+         southBtn.addActionListener(msHandler);
+         southBtn.setActionCommand("c3");
 
+         westBtn = new JButton("West");
+         westBtn.setBackground(Color.black);
+         westBtn.setForeground(Color.white);
+         westBtn.setBorder(null);
+         westBtn.setFont(choiceFont);
+         westBtn.setFocusPainted(false);
+         westBtn.addActionListener(msHandler);
+         westBtn.setActionCommand("c4");
 
+         commandPanel.add(blank1);
+         commandPanel.add(northBtn);
+         commandPanel.add(blank3);
+         commandPanel.add(westBtn);
+         commandPanel.add(blank5);
+         commandPanel.add(eastBtn);
+         commandPanel.add(blank7);
+         commandPanel.add(southBtn);
+         commandPanel.add(blank9);
+
+        //         `````````````````````````````````````````````````SAVE Panel```````````````````````````````````````````````
+        savePanel = new JPanel();
+        savePanel.setBounds(700, 560, 400, 60);
+//        700, 420, 400, 100
+        savePanel.setBackground(Color.black);
+        savePanel.setBorder(border);
+        savePanel.setLayout(null);
+
+        saveBtn = new JButton("SAVE");
+        saveBtn.setBackground(Color.black);
+        saveBtn.setForeground(Color.green);
+        saveBtn.setBounds(20, 5, 150, 50);
+        saveBtn.setFont(savePanelFont);
+        saveBtn.setBorder(null);
+        saveBtn.setFocusPainted(false);
+        saveBtn.addActionListener(msHandler);
+        saveBtn.setActionCommand("save");
+        savePanel.add(saveBtn);
+
+        quitBtn = new JButton("QUIT");
+        quitBtn.setBackground(Color.black);
+        quitBtn.setForeground(Color.red);
+        quitBtn.setBounds(220, 5, 150, 50);
+        quitBtn.setFont(savePanelFont);
+        quitBtn.setBorder(null);
+        quitBtn.setFocusPainted(false);
+        quitBtn.addActionListener(msHandler);
+        quitBtn.setActionCommand("quit");
+        savePanel.add(quitBtn);
+//        commandPanel.add(savePanel);
 
         //add to container
         container.add(mainPanel);
@@ -316,6 +376,7 @@ public class UI {
         container.add(passwordPanel);
         container.add(passwordTf);
         container.add(signPanel);
+        container.add(savePanel);
 
         window.setVisible(true);
     }

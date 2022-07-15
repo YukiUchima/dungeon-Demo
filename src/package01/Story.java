@@ -3,6 +3,8 @@ package package01;
 import package03.Weapon_Knife;
 import package03.Weapon_LongSword;
 
+import java.util.ArrayList;
+
 public class Story {
     RoomGame game;
     UI ui;
@@ -13,6 +15,8 @@ public class Story {
     int gem = 0;
     int hiddenWpn = 0;
     int enteredLeft = 0;
+    String location;
+
 
 
     public Story(RoomGame g, UI userInterface, VisibilityManager vManager){
@@ -21,6 +25,9 @@ public class Story {
         vm = vManager;
     }
 
+    public void setLocation(String saveLocation){
+        location = saveLocation;
+    }
     public void defaultSetup(){
         player.hp = 100;
         ui.currentHealthLabel.setText("" + player.hp);
@@ -31,10 +38,10 @@ public class Story {
         player.currentWeapon = new Weapon_Knife();
         ui.currentWeaponLabel.setText(player.currentWeapon.name);
 
-        ui.choice1.setText("Start");
-        ui.choice2.setText("");
-        ui.choice3.setText("");
-        ui.choice4.setText("");
+        ui.northBtn.setText("Start");
+        ui.eastBtn.setText("");
+        ui.southBtn.setText("");
+        ui.westBtn.setText("");
 
         game.nextPosition1 = "dungeonEntrance";
         game.nextPosition2 = "";
@@ -120,33 +127,35 @@ public class Story {
                 "\n    with trees to the sides of you. " +
                 "\n\nOnly way forward is through this heavy steel door, between the" +
                 "\n    ominous, lowly lit torches");
-        ui.choice1.setText("Open door");
-        ui.choice2.setText("Turn back");
-        ui.choice3.setText("");
-        ui.choice4.setText("");
+        ui.northBtn.setText("North");
+        ui.eastBtn.setText("");
+        ui.southBtn.setText("South");
+        ui.westBtn.setText("");
 
         game.nextPosition1 = "mainDoor";
-        game.nextPosition2 = "turnBack";
-        game.nextPosition3 = "";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "turnBack";
         game.nextPosition4 = "";
     }
 
 //    public void
     public void openDoor(){
+
+        System.out.println("Current Location: " + location);
         ui.mainTextArea.setText("You Entered into the main dungeon room" +
                 "\nYou see three doors ahead of you...");
         ui.outputTextArea.setText("You can choose which door to enter or exit.");
 
 
-        ui.choice1.setText("Left");
-        ui.choice2.setText("Middle");
-        ui.choice3.setText("Right");
-        ui.choice4.setText("EXIT");
+        ui.northBtn.setText("North");
+        ui.eastBtn.setText("East");
+        ui.southBtn.setText("South");
+        ui.westBtn.setText("West");
 
-        game.nextPosition1 = "leftDoor";
-        game.nextPosition2 = "middleDoor";
-        game.nextPosition3 = "rightDoor";
-        game.nextPosition4 = "exit";
+        game.nextPosition1 = "middleDoor";
+        game.nextPosition2 = "rightDoor";
+        game.nextPosition3 = "exit";
+        game.nextPosition4 = "leftDoor";
 
     }
 
@@ -156,25 +165,25 @@ public class Story {
         ui.outputTextArea.setText("You can choose which door to enter or exit.");
 
 
-        ui.choice1.setText("Left Door");
-        ui.choice2.setText("Middle Door");
-        ui.choice3.setText("Right Door");
-        ui.choice4.setText("EXIT");
+        ui.northBtn.setText("North");
+        ui.eastBtn.setText("East");
+        ui.southBtn.setText("South");
+        ui.westBtn.setText("West");
 
-        game.nextPosition1 = "leftDoor";
-        game.nextPosition2 = "middleDoor";
-        game.nextPosition3 = "rightDoor";
-        game.nextPosition4 = "exit";
-    }
+        game.nextPosition1 = "middleDoor";
+        game.nextPosition2 = "rightDoor";
+        game.nextPosition3 = "exit";
+        game.nextPosition4 = "leftDoor";
+        }
+
 
     public void turnBack(){
-        ui.mainTextArea.setText("");
+        ui.mainTextArea.setText("You are deciding to abandon the story... would you like to save?");
 
-
-        ui.choice1.setText("");
-        ui.choice2.setText("");
-        ui.choice3.setText("");
-        ui.choice4.setText("");
+        ui.northBtn.setText("");
+        ui.eastBtn.setText("");
+        ui.southBtn.setText("");
+        ui.westBtn.setText("");
 
         game.nextPosition1 = "";
         game.nextPosition2 = "";
@@ -186,30 +195,30 @@ public class Story {
         defaultSetup();
     }
 
-//    LEFT DOOR         LEFT DOOR         LEFT DOOR         LEFT DOOR         LEFT DOOR---------------------------------
-//    LEFT DOOR         LEFT DOOR         LEFT DOOR         LEFT DOOR         LEFT DOOR---------------------------------
+//    WEST DOOR         LEFT DOOR                  LEFT DOOR                  LEFT DOOR         ------------------------
+//    WEST DOOR         LEFT DOOR                  LEFT DOOR                  LEFT DOOR         ------------------------
     public void leftDoor(){
         if(enteredLeft < 1) {
             ui.mainTextArea.setText("You decide to walk cautiously to the left door and" +
                     "\n    look around you, where you see a note on a" +
-                    "\n    table on the left. " +
-                    "\nYou also see a wardrobe on the right." +
-                    "\nAhead of you is a wall, but on the floor you find a trapdoor");
+                    "\n    table to the west. " +
+                    "\nYou also see a wardrobe to the east." +
+                    "\nNorth of you is a trapdoor before you reach the north wall.");
             enteredLeft+=1;
         }else{
             ui.mainTextArea.setText("You are back in the left room.");
         }
         ui.outputTextArea.setText("You can explore this room.");
 
-        ui.choice1.setText("Table");
-        ui.choice2.setText("Wardrobe");
-        ui.choice3.setText("Trapdoor");
-        ui.choice4.setText("Back...");
+        ui.northBtn.setText("North");
+        ui.eastBtn.setText("East");
+        ui.southBtn.setText("South");
+        ui.westBtn.setText("West");
 
-        game.nextPosition1 = "table";
+        game.nextPosition1 = "trapDoor";
         game.nextPosition2 = "wardrobe";
-        game.nextPosition3 = "trapDoor";
-        game.nextPosition4 = "mainRoom";
+        game.nextPosition3 = "mainRoom";
+        game.nextPosition4 = "table";
     }
 
     public void leftDoorTable(){
@@ -230,10 +239,10 @@ public class Story {
             ui.outputTextArea.setText("");
         }
 
-        ui.choice1.setText("Try Trapdoor");
-        ui.choice2.setText("Check Wardrobe");
-        ui.choice3.setText("Main Room");
-        ui.choice4.setText("");
+        ui.northBtn.setText("North");
+        ui.eastBtn.setText("East");
+        ui.southBtn.setText("South");
+        ui.westBtn.setText("");
 
         game.nextPosition1 = "trapDoor";
         game.nextPosition2 = "wardrobe";
@@ -249,10 +258,10 @@ public class Story {
             ui.outputTextArea.setText("You received the key!");
             trapDoorKey = 1;
 
-            ui.choice1.setText("Trapdoor");
-            ui.choice2.setText("Compartment");
-            ui.choice3.setText("Leave");
-            ui.choice4.setText("");
+            ui.northBtn.setText("Trapdoor");
+            ui.eastBtn.setText("Compartment");
+            ui.southBtn.setText("Leave");
+            ui.westBtn.setText("");
 
             game.nextPosition1 = "trapDoor";
             game.nextPosition2 = "hidden";
@@ -263,10 +272,10 @@ public class Story {
             ui.mainTextArea.setText("You reached the wardrobe again.\n" +
                     "There is not much left to find...");
 
-            ui.choice1.setText("Trapdoor");
-            ui.choice2.setText("Hidden");
-            ui.choice3.setText("Leave");
-            ui.choice4.setText("");
+            ui.northBtn.setText("Trapdoor");
+            ui.eastBtn.setText("Hidden");
+            ui.southBtn.setText("Leave");
+            ui.westBtn.setText("");
 
             game.nextPosition1 = "trapDoor";
             game.nextPosition2 = "hidden";
@@ -274,10 +283,10 @@ public class Story {
             game.nextPosition4 = "";
         }else{
             ui.mainTextArea.setText("There is nothing else to find here.");
-            ui.choice1.setText("Trapdoor");
-            ui.choice2.setText("Leave");
-            ui.choice3.setText("");
-            ui.choice4.setText("");
+            ui.northBtn.setText("Trapdoor");
+            ui.eastBtn.setText("Leave");
+            ui.southBtn.setText("");
+            ui.westBtn.setText("");
 
             game.nextPosition1 = "trapDoor";
             game.nextPosition2 = "mainRoom";
@@ -296,10 +305,10 @@ public class Story {
         player.currentWeapon = new Weapon_LongSword();
         ui.currentWeaponLabel.setText(player.currentWeapon.name);
 
-        ui.choice1.setText("Trapdoor");
-        ui.choice2.setText("Table");
-        ui.choice3.setText("Leave");
-        ui.choice3.setText("");
+        ui.northBtn.setText("Trapdoor");
+        ui.eastBtn.setText("Table");
+        ui.southBtn.setText("Leave");
+        ui.southBtn.setText("");
 
         game.nextPosition1 = "trapDoor";
         game.nextPosition2 = "table";
@@ -313,10 +322,10 @@ public class Story {
                 "You unlocked the trapdoor, will you open it?");
             ui.outputTextArea.setText("You can continue your journey below...");
 
-            ui.choice1.setText("Open Trapdoor");
-            ui.choice2.setText("Check Table ");
-            ui.choice3.setText("Check Wardrobe");
-            ui.choice4.setText("Leave");
+            ui.northBtn.setText("Open Trapdoor");
+            ui.eastBtn.setText("Check Table ");
+            ui.southBtn.setText("Check Wardrobe");
+            ui.westBtn.setText("Leave");
 
             game.nextPosition1 = "leftUnderground";
             game.nextPosition2 = "table";
@@ -326,10 +335,10 @@ public class Story {
         }else if(trapDoorKey < 1){
             ui.mainTextArea.setText("You find that the trapdoor is locked...\n");
             ui.outputTextArea.setText("Hint: You may need to search...");
-            ui.choice1.setText("Check Table");
-            ui.choice2.setText("Check Wardrobe");
-            ui.choice3.setText("Leave");
-            ui.choice4.setText("");
+            ui.northBtn.setText("Check Table");
+            ui.eastBtn.setText("Check Wardrobe");
+            ui.southBtn.setText("Leave");
+            ui.westBtn.setText("");
 
             game.nextPosition1 = "table";
             game.nextPosition2 = "wardrobe";
@@ -338,10 +347,10 @@ public class Story {
         }else{
             ui.mainTextArea.setText("It will be too dark to enter...\n");
             ui.outputTextArea.setText("Hint: You may need to search...");
-            ui.choice1.setText("Check Table");
-            ui.choice2.setText("Check Wardrobe");
-            ui.choice3.setText("Leave");
-            ui.choice4.setText("");
+            ui.northBtn.setText("Check Table");
+            ui.eastBtn.setText("Check Wardrobe");
+            ui.southBtn.setText("Leave");
+            ui.westBtn.setText("");
 
             game.nextPosition1 = "table";
             game.nextPosition2 = "wardrobe";
@@ -358,10 +367,10 @@ public class Story {
         ui.outputTextArea.setText("You have encountered a beast!");
         trapDoorKey=1;
 
-        ui.choice1.setText("Fight");
-        ui.choice2.setText("Speak");
-        ui.choice3.setText("");
-        ui.choice4.setText("Run");
+        ui.northBtn.setText("Fight");
+        ui.eastBtn.setText("Speak");
+        ui.southBtn.setText("");
+        ui.westBtn.setText("Run");
 
         game.nextPosition1 = "fightMonster";
         game.nextPosition2 = "speakMonster";
@@ -375,10 +384,10 @@ public class Story {
                 "\n\n    What exists while hidden, but ceases to exist when revealed?");
 
         ui.outputTextArea.setText("Hint: Solve the riddle to face the consequences...");
-        ui.choice1.setText("Thoughts");
-        ui.choice2.setText("Promises");
-        ui.choice3.setText("Secrets");
-        ui.choice4.setText("RUN!");
+        ui.northBtn.setText("Thoughts");
+        ui.eastBtn.setText("Promises");
+        ui.southBtn.setText("Secrets");
+        ui.westBtn.setText("RUN!");
 
         game.nextPosition1 = "wrongRiddle";
         game.nextPosition2 = "wrongRiddle";
@@ -390,10 +399,10 @@ public class Story {
         ui.mainTextArea.setText("You failed to answer the riddle correctly. The monster refuses to cooperate...");
 
         ui.outputTextArea.setText("Hint: How can you obtain what you need?");
-        ui.choice1.setText("Fight");
-        ui.choice2.setText("Escape!");
-        ui.choice3.setText("");
-        ui.choice4.setText("");
+        ui.northBtn.setText("Fight");
+        ui.eastBtn.setText("Escape!");
+        ui.southBtn.setText("");
+        ui.westBtn.setText("");
 
         game.nextPosition1 = "fightMonster";
         game.nextPosition2 = "run";
@@ -410,10 +419,10 @@ public class Story {
         gem = 1;
 
 
-        ui.choice1.setText("Return");
-        ui.choice2.setText("");
-        ui.choice3.setText("");
-        ui.choice4.setText("");
+        ui.northBtn.setText("Return");
+        ui.eastBtn.setText("");
+        ui.southBtn.setText("");
+        ui.westBtn.setText("");
 
         game.nextPosition1 = "mainRoom";
         game.nextPosition2 = "";
@@ -426,10 +435,10 @@ public class Story {
         gem=1;
 
         ui.outputTextArea.setText("You discovered a large Gem!");
-        ui.choice1.setText("Main");
-        ui.choice2.setText("");
-        ui.choice3.setText("");
-        ui.choice4.setText("");
+        ui.northBtn.setText("Main");
+        ui.eastBtn.setText("");
+        ui.southBtn.setText("");
+        ui.westBtn.setText("");
 
         game.nextPosition1 = "mainRoom";
         game.nextPosition2 = "";

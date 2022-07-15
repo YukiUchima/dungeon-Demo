@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 public class RoomGame {
     ChoiceHandler msHandler = new ChoiceHandler();
     UI ui = new UI();
+//    Database db = new Database();
     VisibilityManager vm = new VisibilityManager(ui);
     Story story = new Story(this, ui, vm);
 
@@ -21,9 +22,10 @@ public class RoomGame {
     }
 
     public RoomGame() {
-        ui.createUI(msHandler); //create window frame
+//        db.initializeDatabase();    //creates database using postGres
+        ui.createUI(msHandler);     //create window frame
         story.defaultSetup();
-        vm.showTitleScreen();   //show login screen
+        vm.showTitleScreen();       //show login screen
     }
 
     public class ChoiceHandler implements ActionListener {
@@ -36,16 +38,23 @@ public class RoomGame {
                 case "signIn":
                     vm.showGameScreen();
                     break;
+                case "quit":
+                    story.defaultSetup();
+                    vm.showTitleScreen();
                 case "c1":
+                    story.setLocation(nextPosition1);
                     story.selectPosition(nextPosition1);
                     break;
                 case "c2":
+                    story.setLocation(nextPosition2);
                     story.selectPosition(nextPosition2);
                     break;
                 case "c3":
+                    story.setLocation(nextPosition3);
                     story.selectPosition(nextPosition3);
                     break;
                 case "c4":
+                    story.setLocation(nextPosition4);
                     story.selectPosition(nextPosition4);
                     break;
                 default:
