@@ -3,11 +3,11 @@ package package02.monsters;
 public class Monster_HoopSnake extends SuperMonster {
 
         String charClassDesc;
-        String name
+//        String name;
 
         //Constructor
-        public Monster_HoopSnake() {
-            name = "Hoop Snake";
+        public Monster_HoopSnake(String name) {
+            setName(name);
             setStrength(6);      //predetermined STRENGTH by char type
             setHealth(45);        //predetermined HEALTH by char type
             setDefense();
@@ -16,7 +16,7 @@ public class Monster_HoopSnake extends SuperMonster {
         @Override
         public String classType() {
             setCharClass("Monster");
-            charClassDesc = getCharClass() + "\n\t'Slept in the chamber slumbering while undisturbed for centuries...'";
+            charClassDesc = getName() + "\n\t'Slept in the chamber slumbering while undisturbed for centuries...'";
             return charClassDesc;
         }
     }

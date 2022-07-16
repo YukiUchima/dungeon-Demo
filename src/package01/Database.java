@@ -1,20 +1,20 @@
-package package01;
-
-import javax.swing.*;
-import java.sql.*;
-
-//  Database table:
-//  USERNAME, currentHealth, currentWeapon
-public class Database {
-    private static Connection c = null;
-    private static Statement stmt = null;
-
-    Player player = new Player();
-
-    public void initializeDatabase() {
-
-
-        //connect to database
+//package package01;
+//
+//import javax.swing.*;
+//import java.sql.*;
+//
+////  Database table:
+////  USERNAME, currentHealth, currentWeapon
+//public class Database {
+//    private static Connection c = null;
+//    private static Statement stmt = null;
+//
+//    Player player = new Player();
+//
+//    public void initializeDatabase() {
+//
+//
+//        connect to database
 //        try {
 //            Class.forName("org.postgresql.Driver");
 //            c = DriverManager.getConnection(
@@ -28,9 +28,9 @@ public class Database {
 //            System.err.println(excp.getClass().getName() + ": " + excp.getMessage());
 //            System.exit(0);
 //        }
-        System.out.println("DATABASE INITIALIZED");
-
-        //create login table
+//        System.out.println("DATABASE INITIALIZED");
+//
+//        create login table
 //		try {
 //			stmt = c.createStatement();
 //			String sql = "create table IF NOT EXISTS userInfo (user_id serial NOT NULL, USERNAME VARCHAR(20), " +
@@ -45,10 +45,10 @@ public class Database {
 //			System.err.println(excp.getClass().getName() + ": " + excp.getMessage());
 //			System.exit(0);
 //		}
-
-    }
-
-    public static void signUp(String user, String pass) {
+//
+//    }
+//
+//    public static void signUp(String user, String pass) {
 //        try {
 //            stmt = c.createStatement();
 //
@@ -78,12 +78,12 @@ public class Database {
 //            System.err.println(excp.getClass().getName() + ": " + excp.getMessage());
 //            System.exit(0);
 //        }
-        System.out.println("SIGN UP COMPLETED");
-
-    }
-
-    public static void logIn(String user, String pass) {
-        System.out.println("LOGGED IN SUCCESSFUL");
+//        System.out.println("SIGN UP COMPLETED");
+//
+//    }
+//
+//    public static void logIn(String user, String pass) {
+//        System.out.println("LOGGED IN SUCCESSFUL");
 //        try {
 //            stmt = c.createStatement();
 //
@@ -107,20 +107,20 @@ public class Database {
 //            System.err.println(excp.getClass().getName() + ": " + excp.getMessage());
 //            System.exit(0);
 //        }
-
-    }
-
-
-    public static void saveGame(int curHlth, String curWpn) {
-        player.hp = curHlth;
-
-        System.out.println("GAME SAVED");
-
-        try{
+//
+//    }
+//
+//
+//    public static void saveGame(int curHlth, String curWpn) {
+//        player.hp = curHlth;
+//
+//        System.out.println("GAME SAVED");
+//
+//        try{
 //            stmt = c.createStatement();
 //
-        String SQL = "UPDATE userInfo SET currentHealth=" + curHlth + ", currentWeapon=" + curWpn "" + +
-            "WHERE username ='" + user;
+//        String SQL = "UPDATE userInfo SET currentHealth=" + curHlth + ", currentWeapon=" + curWpn "" + +
+//            "WHERE username ='" + user;
 //            String SQL = "SELECT * FROM userInfo where username ='" + user + "'AND password ='" + pass + "'";
 //            ResultSet rs = stmt.executeQuery(SQL);
 //
@@ -141,6 +141,6 @@ public class Database {
 //            System.err.println(excp.getClass().getName() + ": " + excp.getMessage());
 //            System.exit(0);
 //        }
-        }
-    }
-}
+//        }
+//    }
+//}

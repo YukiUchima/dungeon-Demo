@@ -2,25 +2,28 @@ package package01;
 
 import package02.monsters.Monster_HoopSnake;
 import package02.monsters.SuperMonster;
+import package03.SuperWeapon;
 import package03.Weapon_Knife;
 import package03.Weapon_LongSword;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Story {
     RoomGame game;
     UI ui;
     VisibilityManager vm;
     Player player = new Player();
+    RandomEncounter encounter = new RandomEncounter();
+
     int candle = 0;
     int trapDoorKey = 0;
     int gem = 0;
     int hiddenWpn = 0;
     int enteredLeft = 0;
     String location;
-
-    ArrayList<SuperMonster> randMonsterEncounter;
+    SuperMonster curMonster;
 
     public Story(RoomGame g, UI userInterface, VisibilityManager vManager){
         game = g;
@@ -33,9 +36,10 @@ public class Story {
     }
     public void defaultSetup(){
         player.hp = 100;
+
         ui.currentHealthLabel.setText("" + player.hp);
-        ui.outputTextArea.setText("You shall find messages here to help you during your " +
-                "\n    venture." +
+        ui.outputTextArea.setText("You shall find messages here to help you during your" +
+                "\n\tventure." +
                 "\n\nTo begin your journey, press start...");
 
         player.currentWeapon = new Weapon_Knife();
@@ -57,10 +61,6 @@ public class Story {
         ui.item4.setText("");
     }
 
-    public void buildRandomMonsters(){
-        randMonsterEncounter = new ArrayList<>();
-//        randMonsterEncounter.add();
-    }
     public void selectPosition(String nextPosition){
         switch(nextPosition){
             //    LEFT DOOR
@@ -95,7 +95,10 @@ public class Story {
                 leftUnderground();
                 break;
             case "fightMonster":
-                fightMonster();
+                fight();
+                break;
+            case "playerAttack":
+                playerAttack();
                 break;
             case "speakMonster":
                 speakMonster();
@@ -147,8 +150,14 @@ public class Story {
 
 //    public void
     public void openDoor(){
-        monsterAttack();
-        System.out.println("Current Location: " + location);
+        if(encounter.monsterSpawned()){
+            curMonster = encounter.monster();
+            System.out.println("Monster encountered: " + curMonster.getName());
+            fight();
+        }else{
+            System.out.println("No monster was found...");
+        }
+
         ui.mainTextArea.setText("You Entered into the main dungeon room" +
                 "\nYou see three doors ahead of you...");
         ui.outputTextArea.setText("You can choose which door to enter or exit.");
@@ -205,7 +214,8 @@ public class Story {
 //    WEST DOOR         LEFT DOOR                  LEFT DOOR                  LEFT DOOR         ------------------------
 //    WEST DOOR         LEFT DOOR                  LEFT DOOR                  LEFT DOOR         ------------------------
     public void leftDoor(){
-
+        curMonster = encounter.monster();           //pick random monster
+        System.out.println(curMonster.getName());
         if(enteredLeft < 1) {
             ui.mainTextArea.setText("You decide to walk cautiously to the left door and" +
                     "\n    look around you, where you see a note on a" +
@@ -438,45 +448,53 @@ public class Story {
         game.nextPosition4 = "";
     }
 
-    public void fightMonster(){
-        ui.mainTextArea.setText("You attacked and killed the monster! (battle simulation)");
+    public void fight(){
+        ui.mainTextArea.setText(curMonster.getName() + "(HP): " +  "\n\nWhat will you do?");
         gem=1;
 
-        ui.outputTextArea.setText("You discovered a large Gem!");
-        ui.northBtn.setText("Main");
-        ui.eastBtn.setText("");
-        ui.southBtn.setText("");
-        ui.westBtn.setText("");
+        ui.outputTextArea.setText("");
 
-        game.nextPosition1 = "mainRoom";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
-    }
-
-    public void monsterAttack(SuperMonster monster){
-        ui.outputTextArea.setText("You encountered a " + monster.getName()!);
-        ui.northBtn.setText("Main");
-        ui.eastBtn.setText("");
-        ui.southBtn.setText("");
-        ui.westBtn.setText("");
-
-        game.nextPosition1 = "mainRoom";
-        game.nextPosition2 = "";
-        game.nextPosition3 = "";
-        game.nextPosition4 = "";
-    }
-    public void fight(){
-        ui.outputTextArea.setText("You discovered a large Gem!");
         ui.northBtn.setText("Attack");
         ui.eastBtn.setText("Run");
         ui.southBtn.setText("");
         ui.westBtn.setText("");
 
+        game.nextPosition1 = "playerAttack";
+        game.nextPosition2 = "run";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+    }
+
+    public void monsterAttack(SuperMonster monster){
+        ui.outputTextArea.setText("You encountered a " + monster.getName() + "!");
+        ui.northBtn.setText("Main");
+        ui.eastBtn.setText("");
+        ui.southBtn.setText("");
+        ui.westBtn.setText("");
+
         game.nextPosition1 = "mainRoom";
         game.nextPosition2 = "";
         game.nextPosition3 = "";
         game.nextPosition4 = "";
+    }
+
+    public void playerAttack(){
+        System.out.println("You attacked the monster");
+//        int playerDamage = new java.util.Random().nextInt(player.currentWeapon.damage);
+//
+//        ui.outputTextArea.setText("You attacked the " +curMonster.getName() + "and gave " + playerDamage + " damage!");
+//
+//        curMonster.setHealth(curMonster.getHealth() - playerDamage);
+//
+//        ui.northBtn.setText(">");
+//        ui.eastBtn.setText("");
+//        ui.southBtn.setText("");
+//        ui.westBtn.setText("");
+//        if(curMonster.getHealth()>0)
+//        game.nextPosition1 = ">";
+//        game.nextPosition2 = "";
+//        game.nextPosition3 = "";
+//        game.nextPosition4 = "";
     }
 
 

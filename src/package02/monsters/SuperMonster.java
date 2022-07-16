@@ -11,9 +11,9 @@ public abstract class SuperMonster {
     private int defense;
 
     //NAME
-//    public void setName(String n1) {
-//        this.name = n1;
-//    }
+    public void setName(String n1) {
+        this.name = n1;
+    }
 
     public String getName() {
         return name;
@@ -74,7 +74,7 @@ public abstract class SuperMonster {
 
     @Override
     public String toString() {
-        return getName() + " the " + classType() + "\n\t\t+Strength: " + getStrength() + "\n\t\t+Health: " + getHealth() +
+        return classType() + "\n\t\t+Strength: " + getStrength() + "\n\t\t+Health: " + getHealth() +
                 "\n\t\t+Defense: " + getDefense() + "\n";
     }
 }
