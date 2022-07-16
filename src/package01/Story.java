@@ -1,8 +1,11 @@
 package package01;
 
+import package02.monsters.Monster_HoopSnake;
+import package02.monsters.SuperMonster;
 import package03.Weapon_Knife;
 import package03.Weapon_LongSword;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Story {
@@ -17,7 +20,7 @@ public class Story {
     int enteredLeft = 0;
     String location;
 
-
+    ArrayList<SuperMonster> randMonsterEncounter;
 
     public Story(RoomGame g, UI userInterface, VisibilityManager vManager){
         game = g;
@@ -54,6 +57,10 @@ public class Story {
         ui.item4.setText("");
     }
 
+    public void buildRandomMonsters(){
+        randMonsterEncounter = new ArrayList<>();
+//        randMonsterEncounter.add();
+    }
     public void selectPosition(String nextPosition){
         switch(nextPosition){
             //    LEFT DOOR
@@ -140,7 +147,7 @@ public class Story {
 
 //    public void
     public void openDoor(){
-
+        monsterAttack();
         System.out.println("Current Location: " + location);
         ui.mainTextArea.setText("You Entered into the main dungeon room" +
                 "\nYou see three doors ahead of you...");
@@ -446,6 +453,32 @@ public class Story {
         game.nextPosition3 = "";
         game.nextPosition4 = "";
     }
+
+    public void monsterAttack(SuperMonster monster){
+        ui.outputTextArea.setText("You encountered a " + monster.getName()!);
+        ui.northBtn.setText("Main");
+        ui.eastBtn.setText("");
+        ui.southBtn.setText("");
+        ui.westBtn.setText("");
+
+        game.nextPosition1 = "mainRoom";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+    }
+    public void fight(){
+        ui.outputTextArea.setText("You discovered a large Gem!");
+        ui.northBtn.setText("Attack");
+        ui.eastBtn.setText("Run");
+        ui.southBtn.setText("");
+        ui.westBtn.setText("");
+
+        game.nextPosition1 = "mainRoom";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+    }
+
 
 //    MIDDLE DOOR
 

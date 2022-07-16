@@ -12,7 +12,7 @@ public class UI {
     Container container;
 
 //    Title screen panels
-    JPanel gameTitlePanel, usernamePanel, passwordPanel, signUpPanel, signInPanel, signPanel;
+    JPanel gameTitlePanel, usernamePanel, passwordPanel, signPanel;
 //    Main Game Panels
     JPanel mainPanel, playerPanel, statsPanel, inventoryPanel, outputPanel, commandPanel, savePanel;
     JTextArea mainTextArea, outputTextArea;

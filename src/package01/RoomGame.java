@@ -3,6 +3,7 @@ package package01;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.xml.crypto.Data;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,9 +11,10 @@ import java.awt.event.ActionListener;
 public class RoomGame {
     ChoiceHandler msHandler = new ChoiceHandler();
     UI ui = new UI();
-//    Database db = new Database();
+    Database db = new Database();
     VisibilityManager vm = new VisibilityManager(ui);
     Story story = new Story(this, ui, vm);
+    Database database = new Database();
 
     String nextPosition1, nextPosition2, nextPosition3, nextPosition4;
 //
@@ -22,10 +24,11 @@ public class RoomGame {
     }
 
     public RoomGame() {
-//        db.initializeDatabase();    //creates database using postGres
+        db.initializeDatabase();    //creates database using postGres
         ui.createUI(msHandler);     //create window frame
         story.defaultSetup();
         vm.showTitleScreen();       //show login screen
+
     }
 
     public class ChoiceHandler implements ActionListener {
@@ -41,6 +44,9 @@ public class RoomGame {
                 case "quit":
                     story.defaultSetup();
                     vm.showTitleScreen();
+                case "save":
+                    database.saveGame(ui.);
+                    break;
                 case "c1":
                     story.setLocation(nextPosition1);
                     story.selectPosition(nextPosition1);
