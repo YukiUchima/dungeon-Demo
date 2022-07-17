@@ -143,10 +143,9 @@ public class Story {
         }
     }
     
-  ////////////////////// MIDDLE ROOM METHODS ///////////////////////////////////////  
+  //-------------------------------------------  MIDDLE DOOR METHODS --------------------------------------------------
     public void middleRoom() {
-    	map = 1;
-    	//if they have map and have never been in room
+    	   //map = 1;
     		if (map == 1 && enteredMiddle == 0) {
     			ui.mainTextArea.setText("A pair of worn statues mark the entrance to this dungeon. "
     				+ " Beyond the pair of statues lies a narrow, foggy room covered in cobwebs, crawling insects and rubble."
@@ -167,7 +166,7 @@ public class Story {
     
                 enteredMiddle += 1;
     	}
-    		//if they don't have map and have never been in room
+    		
     		else if (map == 0){
     			ui.mainTextArea.setText("A pair of worn statues mark the entrance to this dungeon." 
     					+ " Beyond the pair of statues lies a narrow, foggy room covered in cobwebs, crawling insects and rubble."
@@ -185,7 +184,7 @@ public class Story {
                 game.nextPosition4 = "mainRoom";
         		
     		}
-    		//if they have map and have been in room
+    		
     		else if (map == 1 && enteredMiddle > 0){
     			ui.mainTextArea.setText("You are back in the middle room. Once again, "
     					+ "you notice the gloomy room covered in cobwebs, crawling insects and rubble up ahead.");
@@ -200,6 +199,7 @@ public class Story {
                 game.nextPosition2 = "";
                 game.nextPosition3 = "mainRoom";
                 game.nextPosition4 = "";
+                
     		}
 
     	
@@ -265,6 +265,7 @@ public class Story {
     				+ "Once you have reached the altar, the attack stops. "
     				+ "A shining orb ascends upon the altar, and as you reach for it, a bright light blinds your vision.");
     		
+    		ui.outputTextArea.setText("You can explore this room.");
     		ui.northBtn.setText(">>");
 	        ui.eastBtn.setText("");
 	        ui.southBtn.setText("");
@@ -299,7 +300,7 @@ public class Story {
     			+ "floating in the middle of an empty room. You decide to retrieve the object."
     			+ " As you reach for it, a loud voice rings out:"
     			+ " \"Hello, young warrior. You are the first to have reached this point. In this room, you will find a "
-    			+ "protection talisman that will allows you to deflect the danger of the altar. Best of luck to you.\" ");
+    			+ "protection talisman that will allows you to deflect the danger of the altar. Best of luck.\" ");
     	ui.outputTextArea.setText("You have obtained a protection talisman.");
     	ui.item2.setText("Talisman");
     	talisman = 1;
