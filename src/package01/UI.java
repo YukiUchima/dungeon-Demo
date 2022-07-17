@@ -155,6 +155,7 @@ public class UI {
          mainTextArea.setForeground(Color.white);
          mainTextArea.setFont(normalFont);
          mainTextArea.setLineWrap(true);
+         mainTextArea.setWrapStyleWord(true);
          mainPanel.add(mainTextArea);
 
 //         `````````````````````````````````````````````````PLAYER Panel```````````````````````````````````````````````
@@ -266,6 +267,7 @@ public class UI {
          outputTextArea.setEditable(false);
          outputTextArea.setFont(normalFont);
          outputTextArea.setLineWrap(true);
+         outputTextArea.setWrapStyleWord(true);
          outputPanel.add(outputTextArea);
 
 
@@ -291,6 +293,7 @@ public class UI {
          northBtn.setBackground(Color.black);
          northBtn.setForeground(Color.white);
          northBtn.setBorder(null);
+         northBtn.setBorderPainted(false);
          northBtn.setFont(choiceFont);
          northBtn.setFocusPainted(false);
          northBtn.setVisible(true);
@@ -301,6 +304,7 @@ public class UI {
          eastBtn.setBackground(Color.black);
          eastBtn.setForeground(Color.white);
          eastBtn.setBorder(null);
+         eastBtn.setBorderPainted(false);
          eastBtn.setFont(choiceFont);
          eastBtn.setFocusPainted(false);
          eastBtn.addActionListener(msHandler);
@@ -310,6 +314,7 @@ public class UI {
          southBtn.setBackground(Color.black);
          southBtn.setForeground(Color.white);
          southBtn.setBorder(null);
+         southBtn.setBorderPainted(false);
          southBtn.setFont(choiceFont);
          southBtn.setFocusPainted(false);
          southBtn.addActionListener(msHandler);
@@ -319,6 +324,7 @@ public class UI {
          westBtn.setBackground(Color.black);
          westBtn.setForeground(Color.white);
          westBtn.setBorder(null);
+         westBtn.setBorderPainted(false);
          westBtn.setFont(choiceFont);
          westBtn.setFocusPainted(false);
          westBtn.addActionListener(msHandler);

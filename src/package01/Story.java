@@ -15,6 +15,9 @@ public class Story {
     int gem = 0;
     int hiddenWpn = 0;
     int enteredLeft = 0;
+    int enteredMiddle = 0;
+    int map = 0;
+    int talisman = 0;
     String location;
 
 
@@ -107,8 +110,28 @@ public class Story {
                 break;
 //    MIDDLE DOOR ------------------------------------------------------------------------------------------ MIDDLE DOOR
             case "middleDoor":
+            	middleRoom();
                 System.out.println("Middle door selected");
                 break;
+            case "secretPathway":
+            	secretPathway();
+            	break;
+            case "altar":
+            	altar();
+            	break;
+            case "wall":
+            	wall();
+            	break;
+            case "talisman":
+            	talisman();
+            	break;
+            case "hiddenStairway":
+            	hiddenStairway();
+            	break;
+            case ">>":
+            	lake();
+            	break;
+            
 
 
 
@@ -119,8 +142,191 @@ public class Story {
                 break;
         }
     }
+    
+  ////////////////////// MIDDLE ROOM METHODS ///////////////////////////////////////  
+    public void middleRoom() {
+    	ui.mainTextArea.setWrapStyleWord(true);
+    	map = 1;
+    	//if they have map and have never been in room
+    		if (map == 1 && enteredMiddle == 0) {
+    			ui.mainTextArea.setText("A pair of worn statues mark the entrance to this dungeon. "
+    				+ " Beyond the pair of statues lies a narrow, foggy room covered in cobwebs, crawling insects and rubble."
+    				+ " You reach for a torch to light your way into the darkness.");
+    			ui.item1.setText("Torch");
+    			
+        		ui.outputTextArea.setText("You have obtained a torch.");
+        		
+        		ui.northBtn.setText("North");
+                ui.eastBtn.setText("");
+                ui.southBtn.setText("South");
+                ui.westBtn.setText("");
+
+                game.nextPosition1 = "secretPathway";
+                game.nextPosition2 = "";
+                game.nextPosition3 = "mainRoom";
+                game.nextPosition4 = "";
+    
+                enteredMiddle += 1;
+    	}
+    		//if they don't have map and have never been in room
+    		else if (map == 0){
+    			ui.mainTextArea.setText("A pair of worn statues mark the entrance to this dungeon." 
+    					+ " Beyond the pair of statues lies a narrow, foggy room covered in cobwebs, crawling insects and rubble."
+    					+ " Danger looms about everywhere. It is not safe for you to explore this room without something to guid you.");
+        		ui.outputTextArea.setText("Hint: you may want to search elsewhere.");
+        		
+        		ui.northBtn.setText("North");
+                ui.eastBtn.setText("East");
+                ui.southBtn.setText("South");
+                ui.westBtn.setText("West");
+
+                game.nextPosition1 = "mainRoom";
+                game.nextPosition2 = "mainRoom";
+                game.nextPosition3 = "mainRoom";
+                game.nextPosition4 = "mainRoom";
+        		
+    		}
+    		//if they have map and have been in room
+    		else if (map == 1 && enteredMiddle > 0){
+    			ui.mainTextArea.setText("You are back in the middle room. Once again, "
+    					+ "you notice the gloomy room covered in cobwebs, crawling insects and rubble up ahead.");
+    			ui.outputTextArea.setText("You can explore this room.");
+    			
+    			ui.northBtn.setText("North");
+                ui.eastBtn.setText("");
+                ui.southBtn.setText("South");
+                ui.westBtn.setText("");
+
+                game.nextPosition1 = "secretPathway";
+                game.nextPosition2 = "";
+                game.nextPosition3 = "mainRoom";
+                game.nextPosition4 = "";
+    		}
+
+    	
+    }
+    
+    
+    public void secretPathway() {
+    	
+    	ui.mainTextArea.setText("As you enter the room ahead, the door behind you abruplty shuts and locks you in. "
+    			+ "You notice three narrow pathways ahead of you. Looking at your map, you notice the path to the hidden treasure "
+    			+ "lies to the right. You carefully start walking towards that direction ...");
+    	
+    	ui.northBtn.setText("North");
+        ui.eastBtn.setText("");
+        ui.southBtn.setText("South");
+        ui.westBtn.setText("");
+
+        game.nextPosition1 = "altar";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "hiddenStairway";
+        game.nextPosition4 = "";
+        
+        ui.outputTextArea.setText("Explore ahead to find the hidden treasure.");
+		
+    	
+    }
+    public void wall(){
+    	ui.mainTextArea.setText("There is a wall here. Nothing special to look at.");
+    	
+    	ui.northBtn.setText("North");
+        ui.eastBtn.setText("East");
+        ui.southBtn.setText("South");
+        ui.westBtn.setText("West");
+
+        game.nextPosition1 = "altar";
+        game.nextPosition2 = "wall";
+        game.nextPosition3 = "wall";
+        game.nextPosition4 = "hiddenStairway";
+    }
+    
+    public void altar() {
+    	if (talisman == 0) {
+	    	ui.mainTextArea.setText("You notice an altar that has ancient engraving imprinted upon it."
+	    			+ " Surrounding the altar lie rotting bodies that have been impaled with various weapons."
+	    			+ " It appears that no one has been able to approach this altar without reaching an inevitable death.");
+	    	
+	    	ui.outputTextArea.setText("Hint: You may want to search this room.");
+	    	
+	    	ui.northBtn.setText("North");
+	        ui.eastBtn.setText("East");
+	        ui.southBtn.setText("South");
+	        ui.westBtn.setText("West");
+	
+	        game.nextPosition1 = "wall";
+	        game.nextPosition2 = "hiddenStairway";
+	        game.nextPosition3 = "hiddenStairway";
+	        game.nextPosition4 = "wall";
+    	}
+    	else {
+    		
+    		ui.mainTextArea.setText("You are back at the altar. As you approach closer, you reach an area where no person has gotten near."
+    				+ " Suddenly, arrows and swords come shooting at you from all directions. "
+    				+ "You quickly activate your talisman to protect yourself from danger. "
+    				+ "Once you have reached the altar, the attack stops. "
+    				+ "A shining orb ascends upon the altar, and as you reach for it, a bright light blinds your vision.");
+    		
+    		ui.northBtn.setText(">>");
+	        ui.eastBtn.setText("");
+	        ui.southBtn.setText("");
+	        ui.westBtn.setText("");
+	
+	        game.nextPosition1 = "";
+	        game.nextPosition2 = "";
+	        game.nextPosition3 = "";
+	        game.nextPosition4 = "";
+    	}
+    }
+    
+    public void hiddenStairway() {
+    	ui.mainTextArea.setText("In a dark corner, you notice a hidden stairway. Going down the stairway, up ahead, "
+    			+ "there is a large iron door that is shut tight."
+    			+ " Looking at your map, there seems to be a secret way to open the door."
+    			+ " Marks indictating to push a brick located 3 feet away to the right of the door and 5 feet "
+    			+ "from the ground are written on the map.");
+    	
+    	ui.northBtn.setText("Push");
+        ui.eastBtn.setText("");
+        ui.southBtn.setText("Return");
+        ui.westBtn.setText("");
+
+        game.nextPosition1 = "talisman";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "altar";
+        game.nextPosition4 = "";
+    }
+    public void talisman() {
+    	ui.mainTextArea.setText(" As you push the brick, the door opens and reveals a bright object "
+    			+ "floating in the middle of an empty room. You decide to retrieve the object."
+    			+ " As you reach for it, a loud voice rings out:"
+    			+ " \"Hello, young warrior. You are the first to have reached this point. In this room, you will find a "
+    			+ "protection talisman that will allows you to deflect the danger of the altar. Best of luck to you.\" ");
+    	ui.outputTextArea.setText("You have obtained a protection talisman.");
+    	ui.item2.setText("Talisman");
+    	talisman = 1;
+    	
+    	ui.northBtn.setText("North");
+        ui.eastBtn.setText("");
+        ui.southBtn.setText("");
+        ui.westBtn.setText("");
+
+        game.nextPosition1 = "altar";
+        game.nextPosition2 = "";
+        game.nextPosition3 = "";
+        game.nextPosition4 = "";
+	}
+    
+    public void lake() {
+    	ui.mainTextArea.setText(" As you open your eyes, you slowly familiarize yourself with your surroundings."
+    			+ " it appears you have been teleported to a an indoor lake. "
+    			+ "As you check your map, you realize this is the final destination that leads to the hidden treasure. ");
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //    Locations -- Text Area Story Line
     public void dungeonEntrance(){
+    	
         ui.mainTextArea.setText("You slowly realize the day has gone and it is dark as" +
                 "\n    you approach the door. " +
                 "\n\nAround the door you see brush and rocks, the path ends here, " +

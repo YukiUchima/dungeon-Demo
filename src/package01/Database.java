@@ -15,7 +15,7 @@ public class Database {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/adventuredb",
-                    "postgres", "password");
+                    "postgres", "alassafi2001");
             System.out.println("Connected to the database.");
 
         }
