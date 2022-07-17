@@ -145,7 +145,6 @@ public class Story {
     
   ////////////////////// MIDDLE ROOM METHODS ///////////////////////////////////////  
     public void middleRoom() {
-    	ui.mainTextArea.setWrapStyleWord(true);
     	map = 1;
     	//if they have map and have never been in room
     		if (map == 1 && enteredMiddle == 0) {
@@ -229,7 +228,6 @@ public class Story {
     }
     public void wall(){
     	ui.mainTextArea.setText("There is a wall here. Nothing special to look at.");
-    	
     	ui.northBtn.setText("North");
         ui.eastBtn.setText("East");
         ui.southBtn.setText("South");
