@@ -131,12 +131,9 @@ public class Story {
     }
 //    Locations -- Text Area Story Line
     public void dungeonEntrance(){
-        ui.mainTextArea.setText("You slowly realize the day has gone and it is dark as" +
-                "\n    you approach the door. " +
-                "\n\nAround the door you see brush and rocks, the path ends here, " +
-                "\n    with trees to the sides of you. " +
-                "\n\nOnly way forward is through this heavy steel door, between the" +
-                "\n    ominous, lowly lit torches");
+        ui.mainTextArea.setText("You slowly realize the day has gone and it is dark as you approach the door. " +
+                "\n\nAround the door you see brush and rocks, the path ends here, with trees to the sides of you. " +
+                "\n\nOnly way forward is through this heavy steel door, between the ominous, lowly lit torches");
         ui.northBtn.setText("North");
         ui.eastBtn.setText("");
         ui.southBtn.setText("South");
@@ -158,8 +155,7 @@ public class Story {
             System.out.println("No monster was found...");
         }
 
-        ui.mainTextArea.setText("You Entered into the main dungeon room" +
-                "\nYou see three doors ahead of you...");
+        ui.mainTextArea.setText("You Entered into the main dungeon room.\nYou see three doors ahead of you...");
         ui.outputTextArea.setText("You can choose which door to enter or exit.");
 
 
@@ -176,8 +172,7 @@ public class Story {
     }
 
     public void mainRoom(){
-        ui.mainTextArea.setText("You returned to the main dungeon room" +
-                "\nWhich way do you want to go?...");
+        ui.mainTextArea.setText("You returned to the main dungeon room\nWhich way do you want to go?...");
         ui.outputTextArea.setText("You can choose which door to enter or exit.");
 
 
@@ -217,11 +212,9 @@ public class Story {
         curMonster = encounter.monster();           //pick random monster
         System.out.println(curMonster.getName());
         if(enteredLeft < 1) {
-            ui.mainTextArea.setText("You decide to walk cautiously to the left door and" +
-                    "\n    look around you, where you see a note on a" +
-                    "\n    table to the west. " +
-                    "\nYou also see a wardrobe to the east." +
-                    "\nNorth of you is a trapdoor before you reach the north wall.");
+            ui.mainTextArea.setText("You decide to walk cautiously to the left door and look around you, where you" +
+                    " see a note on a table to the west. You also see a wardrobe to the east. North of you is a " +
+                    "trapdoor before you reach the north wall.");
             enteredLeft+=1;
         }else{
             ui.mainTextArea.setText("You are back in the left room.");
@@ -241,9 +234,8 @@ public class Story {
 
     public void leftDoorTable(){
         if(candle < 1){
-            ui.mainTextArea.setText("As you reached the table, you see a note... You reach for the note" +
-                    "\n and read the following:" +
-                    "\n\n\" One who wishes to complete his quest must first face the " +
+            ui.mainTextArea.setText("As you reached the table, you see a note... You reach for the note and " +
+                    "read the following:\n\n\" One who wishes to complete his quest must first face the " +
                     "\n darkness below. Take the candle on the table to move forth in your journey...\"");
 
             ui.outputTextArea.setText("You now have a candle!");
@@ -251,8 +243,8 @@ public class Story {
             ui.item1.setText("Candle");
         }else{
             ui.mainTextArea.setText("You find the note again on the table. It reads:" +
-                    "\n\n\" One who wishes to complete his quest must first face the " +
-                    "\n darkness below. Take the candle on the table to move forth in your journey...\"");
+                    "\n\n\" One who wishes to complete his quest must first face the darkness below." +
+                    " Take the candle on the table to move forth in your journey...\"");
 
             ui.outputTextArea.setText("");
         }
@@ -270,8 +262,7 @@ public class Story {
 
     public void wardrobe(){
         if(trapDoorKey < 1) {
-            ui.mainTextArea.setText("You reached the wardrobe in wander of what you will find.\n" +
-                    "You notice a metal key...");
+            ui.mainTextArea.setText("You reached the wardrobe in wander of what you will find. You notice a metal key...");
 
             ui.outputTextArea.setText("You received the key!");
             trapDoorKey = 1;
@@ -314,8 +305,8 @@ public class Story {
     }
 
     public void hidden(){
-        ui.mainTextArea.setText("Your curiosity has rewarded you this time...\n" +
-                "You have found a new weapon for your journey.");
+        ui.mainTextArea.setText("Your curiosity has rewarded you this time... You have " +
+                "found a new weapon for your journey.");
 
         hiddenWpn = 1;
 
@@ -336,8 +327,7 @@ public class Story {
 
     public void trapDoor(){
         if (trapDoorKey > 0 && candle > 0){
-            ui.mainTextArea.setText("You used the key you found in the wardrobe.\n" +
-                "You unlocked the trapdoor, will you open it?");
+            ui.mainTextArea.setText("You used the key you found in the wardrobe. You unlocked the trapdoor, will you open it?");
             ui.outputTextArea.setText("You can continue your journey below...");
 
             ui.northBtn.setText("Open Trapdoor");
@@ -378,9 +368,8 @@ public class Story {
     }
 
     public void leftUnderground(){
-        ui.mainTextArea.setText("You walked down with the sound of stone steps of a cold chamber." +
-                "\n You approach the end of this stairway to a large open, chamber." +
-                "\n\n    Troll: \"Who disturbs me?!\"");
+        ui.mainTextArea.setText("You walked down with the sound of stone steps of a cold chamber. You approach " +
+                "the end of this stairway to a large open, chamber.\n\nTroll: \"Who disturbs me?!\"");
 
         ui.outputTextArea.setText("You have encountered a beast!");
         trapDoorKey=1;
