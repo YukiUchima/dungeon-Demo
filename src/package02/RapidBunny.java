@@ -1,3 +1,4 @@
+package package02;
 //package package02.monsters;
 //
 //public class RapidBunny extends Char_Type {

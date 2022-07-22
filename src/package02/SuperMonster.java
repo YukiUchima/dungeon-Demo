@@ -1,4 +1,4 @@
-package package02.monsters;
+package package02;
 
 import java.util.Random;
 

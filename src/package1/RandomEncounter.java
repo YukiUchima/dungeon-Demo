@@ -1,7 +1,7 @@
-package package01;
+package package1;
 
-import package02.monsters.Monster_HoopSnake;
-import package02.monsters.SuperMonster;
+import package02.Monster_HoopSnake;
+import package02.SuperMonster;
 
 import javax.management.MalformedObjectNameException;
 import java.util.ArrayList;

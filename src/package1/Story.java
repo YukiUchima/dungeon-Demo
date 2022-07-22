@@ -1,7 +1,7 @@
-package package01;
+package package1;
 
-import package02.monsters.Monster_HoopSnake;
-import package02.monsters.SuperMonster;
+import package02.Monster_HoopSnake;
+import package02.SuperMonster;
 import package03.SuperWeapon;
 import package03.Weapon_Knife;
 import package03.Weapon_LongSword;
@@ -17,11 +17,22 @@ public class Story {
     Player player = new Player();
     RandomEncounter encounter = new RandomEncounter();
 
+    
+    //-----------------------Start of progressKey Vals-----------------------
     int candle = 0;
     int trapDoorKey = 0;
     int gem = 0;
     int hiddenWpn = 0;
     int enteredLeft = 0;
+    static int hasTalisman = 1;
+    static int hasMap = 0;
+    
+    static int[] progressKey = new int[2];
+    progressKey[0] = hasTalisman;
+	progressKey[1] = hasMap;
+    //We also need to include player.hp
+    
+    //-----------------------End of progressKey Vals-------------------------
     String location;
     SuperMonster curMonster;
 
@@ -61,7 +72,25 @@ public class Story {
         ui.item4.setText("");
     }
 
-    public void selectPosition(String nextPosition){
+    public static String createProgressKey() {
+    	String progressKeyString = "";
+    	for (int i = 0; i < progressKey.length ; ++i) {
+    		progressKeyString = progressKeyString + String.valueOf(progressKey[i]);
+    	}
+    	
+    	return progressKeyString;
+    }
+    
+    public static void readProgressKey(String progressKeyString) {
+    	for (int i = 0; i < progressKeyString.length() ; ++i) {
+    		progressKey[i] = progressKeyString.charAt(i);
+    	}
+    	
+    	System.out.println(hasMap);
+    	System.out.println(hasTalisman);
+    }
+    
+    public void selectPosition(String nextPosition){ //Location parser on loadup
         switch(nextPosition){
             //    LEFT DOOR
             case "dungeonEntrance":
@@ -124,7 +153,17 @@ public class Story {
 
 //    RIGHT DOOR -------------------------------------------------------------------------------------------- RIGHT DOOR
             case "rightDoor":
-                System.out.println("Right Door Selected");
+                rightDoor();
+                break;
+            case "rightTable":
+            	rightTable();
+            	break;
+            case "rightTableNoMap":
+            	rightTableNoMap();
+            	break;
+            case "receiveMap":
+            	receiveMap();
+            	break;
             default:
                 break;
         }
@@ -155,18 +194,18 @@ public class Story {
             System.out.println("No monster was found...");
         }
 
-        ui.mainTextArea.setText("You Entered into the main dungeon room.\nYou see three doors ahead of you...");
+        ui.mainTextArea.setText("You Entered into the main dungeon room.\nYou see three doors scattered around you...");
         ui.outputTextArea.setText("You can choose which door to enter or exit.");
 
 
         ui.northBtn.setText("North");
         ui.eastBtn.setText("East");
-        ui.southBtn.setText("South");
+        ui.southBtn.setText("");
         ui.westBtn.setText("West");
 
         game.nextPosition1 = "middleDoor";
         game.nextPosition2 = "rightDoor";
-        game.nextPosition3 = "exit";
+        game.nextPosition3 = "";
         game.nextPosition4 = "leftDoor";
 
     }
@@ -178,12 +217,12 @@ public class Story {
 
         ui.northBtn.setText("North");
         ui.eastBtn.setText("East");
-        ui.southBtn.setText("South");
+        ui.southBtn.setText("");
         ui.westBtn.setText("West");
 
         game.nextPosition1 = "middleDoor";
         game.nextPosition2 = "rightDoor";
-        game.nextPosition3 = "exit";
+        game.nextPosition3 = "";
         game.nextPosition4 = "leftDoor";
         }
 
@@ -489,6 +528,109 @@ public class Story {
 
 //    MIDDLE DOOR
 
+//    RIGHT DOOR
+    public void rightDoor() {
+    	if (hasTalisman != 1) {
+    		ui.mainTextArea.setText("As you push open the right door... \n" + 
+    	                            "You find that it's too dark to make out anything. May be best to turn back around and return once you found a light source.\n");
+    	
+    		ui.northBtn.setText("");
+    		ui.eastBtn.setText("");
+    		ui.southBtn.setText("South");
+    		ui.westBtn.setText("");
+    		
+    		game.nextPosition1 = "";
+    		game.nextPosition2 = "";
+    		game.nextPosition3 = "mainRoom";
+    		game.nextPosition4 = "";
+    	} else {
+    		ui.mainTextArea.setText("As you push open the right door... \n" + 
+    	                            "The talisman in your bag shines brightly and illumnates the space around you.\n" +
+                                    "As you take out the talisman out of your bag, a table with a large map laid atop of it comes into view.\n" );
+    		
+    		ui.outputTextArea.setText("Head North to interact with the table.");
+    		
+    		ui.northBtn.setText("North");
+    		ui.eastBtn.setText("");
+    		ui.southBtn.setText("South");
+    		ui.westBtn.setText("");
+    		
+    		game.nextPosition1 = "rightTable";
+    		game.nextPosition2 = "";
+    		game.nextPosition3 = "mainRoom";
+    		game.nextPosition4 = "";
+    		
+    	}
+    }
+    
+    public void rightTable() {
+    	if (hasMap != 1) {
+    		ui.mainTextArea.setText("You decide to approach the old dusty table in front of you...\n" +
+    	                            "As you step closer, you begin to make out the drawings on the map. This is a map of a huge lake!");
+    		
+    		ui.outputTextArea.setText("Do you wish to take the map?");
+    		
+    		ui.northBtn.setText("");
+    		ui.eastBtn.setText("No");
+    		ui.southBtn.setText("");
+    		ui.westBtn.setText("Yes");
+    		
+    		game.nextPosition1 = "";
+    		game.nextPosition2 = "rightTableNoMap";
+    		game.nextPosition3 = "";
+    		game.nextPosition4 = "receiveMap";
+    	} else {
+    		ui.mainTextArea.setText("This is where you found the map to the lake.");
+    		
+    		ui.outputTextArea.setText("Click South to head back.");
+    		
+    		ui.northBtn.setText("");
+    		ui.eastBtn.setText("");
+    		ui.southBtn.setText("South");
+    		ui.westBtn.setText("");
+    		
+    		game.nextPosition1 = "";
+    		game.nextPosition2 = "";
+    		game.nextPosition3 = "rightDoor";
+    		game.nextPosition4 = "";
+    	}
+    }
+    
+    public void rightTableNoMap() {
+    	ui.outputTextArea.setText("You decide to not take the map.");
+    	
+    	ui.northBtn.setText(">");
+		ui.eastBtn.setText("");
+		ui.southBtn.setText("");
+		ui.westBtn.setText("");
+		
+		game.nextPosition1 = "rightDoor";
+		game.nextPosition2 = "";
+		game.nextPosition3 = "";
+		game.nextPosition4 = "";
+    }
+    
+    public void receiveMap() {
+    	ui.outputTextArea.setText("You have received a map of the 'Secret Lake'");
+    	
+    	hasMap = 1;
+    	ui.item4.setText("Map");
+    	
+    	ui.northBtn.setText(">");
+		ui.eastBtn.setText("");
+		ui.southBtn.setText("");
+		ui.westBtn.setText("");
+		
+		game.nextPosition1 = "rightDoor";
+		game.nextPosition2 = "";
+		game.nextPosition3 = "";
+		game.nextPosition4 = "";
+    }
+    public static void main(String [] args) {
+    	String progressKey = "30";
+    	
+    	readProgressKey(progressKey);
+    }
 }
 
 //Frame LOCATIONS
