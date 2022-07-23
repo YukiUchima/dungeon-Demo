@@ -1,3 +1,4 @@
+package package02;
 //package package02.monsters;
 //
 //public class Boss2 extends Char_Type {

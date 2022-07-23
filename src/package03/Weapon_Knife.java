@@ -6,4 +6,8 @@ public class Weapon_Knife extends SuperWeapon {
         name = "Knife";
         damage = 5;
     }
+    
+    public String getName() {
+    	return name;
+    }
 }

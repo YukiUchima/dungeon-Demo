@@ -2,9 +2,12 @@ package package01;
 
 import java.awt.*;
 
+
+
 import javax.swing.*;
 import javax.swing.border.*;
 //import javax.swing.border.LineBorder;
+
 
 public class UI {
 
@@ -12,16 +15,17 @@ public class UI {
     Container container;
 
 //    Title screen panels
-    JPanel gameTitlePanel, usernamePanel, passwordPanel, signUpPanel, signInPanel, signPanel;
+    JPanel gameTitlePanel, usernamePanel, passwordPanel, signPanel;
 //    Main Game Panels
     JPanel mainPanel, playerPanel, statsPanel, inventoryPanel, outputPanel, commandPanel, savePanel;
     JTextArea mainTextArea, outputTextArea;
     JLabel gameTitleLbl, usernameLbl, passwordLbl, healthLabel,currentHealthLabel, weaponLabel, inventoryTitleLabel;
-    JLabel currentWeaponLabel, item1Label,item2Label,item3Label,item4Label, item1, item2, item3, item4;
+    JLabel currentWeaponLabel, item1, item2, item3, item4, item5,item6,item7,item8, item9, item10, item11, item12;
     JLabel blank1, blank3, blank5, blank7, blank9;
-    JButton signUpBtn, signInBtn, northBtn, eastBtn,southBtn,westBtn, saveBtn, quitBtn;
-    JTextField usernameTf;
-    JPasswordField passwordTf;
+    JButton signUpBtn, signInBtn, northBtn, eastBtn,southBtn,westBtn, saveBtn; //quitBtn;
+    JTextField usernameTf, passwordTf;
+    //JPasswordField passwordTf;
+
 
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 60);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 22);
@@ -29,9 +33,12 @@ public class UI {
     Font loginFont = new Font("Lucida Grande", Font.PLAIN, 24);
     Font itemFont = new Font("Times New Roman", Font.PLAIN, 18);
     Font savePanelFont = new Font("Times New Roman", Font.PLAIN, 18);
+    Font inventoryFont = new Font("Times New Roman", Font.BOLD, 28);
 
     Border border = new LineBorder(Color.white, 2, true);
     Border inventoryBorder = new LineBorder(Color.lightGray, 1, true);
+    
+	
 
 
     public void createUI(RoomGame.ChoiceHandler msHandler) {
@@ -106,7 +113,8 @@ public class UI {
         int passwordTfWidth = 300;
         int passwordTfheight = 40;
         int passwordTfXCenter = width/2 - passwordTfWidth/2;
-        passwordTf = new JPasswordField();
+        //passwordTf = new JPTextField();
+        passwordTf = new JTextField();
         passwordTf.setBackground(Color.white);
         passwordTf.setEditable(true);
         passwordTf.setFont(loginFont);
@@ -144,6 +152,7 @@ public class UI {
 //          GAME SCREEN          GAME SCREEN          GAME SCREEN          GAME SCREEN          GAME SCREEN
 //          GAME SCREEN          GAME SCREEN          GAME SCREEN          GAME SCREEN          GAME SCREEN
 
+//         `````````````````````````````````````````````````MAIN TOP-LEFT Panel```````````````````````````````````````````````
          mainPanel = new JPanel();
          mainPanel.setBounds(100,20, 600, 400);
          mainPanel.setBackground(Color.black);
@@ -154,6 +163,7 @@ public class UI {
          mainTextArea.setBackground(Color.black);
          mainTextArea.setForeground(Color.white);
          mainTextArea.setFont(normalFont);
+         mainTextArea.setWrapStyleWord(true);
          mainTextArea.setLineWrap(true);
          mainTextArea.setWrapStyleWord(true);
          mainPanel.add(mainTextArea);
@@ -191,37 +201,22 @@ public class UI {
          currentWeaponLabel.setForeground(Color.white);
          statsPanel.add(currentWeaponLabel);
 //         `````````````````````````````````````````````````INVENTORY Panel````````````````````````````````````````````
-        inventoryTitleLabel = new JLabel("Inventory");
+        inventoryTitleLabel = new JLabel("Inventory", SwingConstants.CENTER);
         inventoryTitleLabel.setBounds(40,120, 320, 40);
         inventoryTitleLabel.setBackground(Color.lightGray);
         inventoryTitleLabel.setForeground(Color.white);
-        inventoryTitleLabel.setFont(normalFont);
+        inventoryTitleLabel.setFont(inventoryFont);
         inventoryTitleLabel.setBorder(inventoryBorder);
         playerPanel.add(inventoryTitleLabel);
 
         inventoryPanel = new JPanel();
          inventoryPanel.setBounds(40,160, 320, 200);
-         inventoryPanel.setBackground(Color.yellow);
+         inventoryPanel.setBackground(Color.black);
          inventoryPanel.setForeground(Color.white);
-         inventoryPanel.setLayout(new GridLayout(4,2));
+         inventoryPanel.setLayout(new GridLayout(4,3));
 //         inventoryPanel.setBorder(inventoryBorder);
          playerPanel.add(inventoryPanel);
 
-         item1Label = new JLabel(" Item 1:");
-         item1Label.setFont(normalFont);
-         item1Label.setBorder(inventoryBorder);
-
-         item2Label = new JLabel(" Item 2:");
-         item2Label.setFont(normalFont);
-         item2Label.setBorder(inventoryBorder);
-
-         item3Label = new JLabel(" Item 3:");
-         item3Label.setFont(normalFont);
-         item3Label.setBorder(inventoryBorder);
-
-         item4Label = new JLabel(" Item 4:");
-         item4Label.setFont(normalFont);
-         item4Label.setBorder(inventoryBorder);
 
          item1 = new JLabel("Telephone", SwingConstants.CENTER);
          item1.setFont(itemFont);
@@ -243,13 +238,42 @@ public class UI {
          item4.setForeground(Color.blue);
          item4.setBorder(inventoryBorder);
 
-        inventoryPanel.add(item1Label);
-        inventoryPanel.add(item2Label);
+         item5 = new JLabel("");
+         item5.setFont(normalFont);
+         item5.setBorder(inventoryBorder);
+
+         item6 = new JLabel("");
+         item6.setFont(normalFont);
+         item6.setBorder(inventoryBorder);
+
+         item7 = new JLabel("");
+         item7.setFont(normalFont);
+         item7.setBorder(inventoryBorder);
+
+         item8 = new JLabel("");
+         item8.setFont(normalFont);
+         item8.setBorder(inventoryBorder);
+
+         item8.setFont(normalFont);
+         item8 = new JLabel("");
+         item8.setBorder(inventoryBorder);
+
+         item8 = new JLabel("");
+         item8.setFont(normalFont);
+         item8.setBorder(inventoryBorder);
+
+         item8 = new JLabel("");
+         item8.setFont(normalFont);
+         item8.setBorder(inventoryBorder);
+
+
+        inventoryPanel.add(item5);
+        inventoryPanel.add(item6);
         inventoryPanel.add(item1);
         inventoryPanel.add(item2);
 
-        inventoryPanel.add(item3Label);
-        inventoryPanel.add(item4Label);
+        inventoryPanel.add(item7);
+        inventoryPanel.add(item8);
         inventoryPanel.add(item3);
         inventoryPanel.add(item4);
 
@@ -351,14 +375,14 @@ public class UI {
         saveBtn = new JButton("SAVE");
         saveBtn.setBackground(Color.black);
         saveBtn.setForeground(Color.green);
-        saveBtn.setBounds(20, 5, 150, 50);
+        saveBtn.setBounds(20, 5, 350, 50);
         saveBtn.setFont(savePanelFont);
         saveBtn.setBorder(null);
         saveBtn.setFocusPainted(false);
         saveBtn.addActionListener(msHandler);
         saveBtn.setActionCommand("save");
         savePanel.add(saveBtn);
-
+/*
         quitBtn = new JButton("QUIT");
         quitBtn.setBackground(Color.black);
         quitBtn.setForeground(Color.red);
@@ -370,7 +394,8 @@ public class UI {
         quitBtn.setActionCommand("quit");
         savePanel.add(quitBtn);
 //        commandPanel.add(savePanel);
-
+*/
+        
         //add to container
         container.add(mainPanel);
         container.add(playerPanel);
