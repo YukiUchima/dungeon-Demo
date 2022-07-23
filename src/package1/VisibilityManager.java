@@ -1,4 +1,4 @@
-package package01;
+package package1;
 
 public class VisibilityManager {
     UI ui;

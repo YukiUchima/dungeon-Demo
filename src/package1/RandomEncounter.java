@@ -1,7 +1,10 @@
-package package01;
+package package1;
 
 import package02.Monster_HoopSnake;
+<<<<<<< HEAD:src/package01/RandomEncounter.java
 
+=======
+>>>>>>> e4b81770071cb1e2cdaad117485d187231564dd6:src/package1/RandomEncounter.java
 import package02.SuperMonster;
 
 import javax.management.MalformedObjectNameException;

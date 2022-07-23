@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/package01/Database.java
 //<<<<<<< HEAD
 package package01;
 
@@ -171,6 +172,9 @@ public class Database {
 }
 
 //=======
+=======
+package package1;
+>>>>>>> e4b81770071cb1e2cdaad117485d187231564dd6:src/package1/Database.java
 //package package01;
 //
 //import javax.swing.*;

@@ -1,9 +1,12 @@
-package package01;
+package package1;
 
 import package02.Monster_HoopSnake;
+<<<<<<< HEAD:src/package01/Story.java
 
 
 
+=======
+>>>>>>> e4b81770071cb1e2cdaad117485d187231564dd6:src/package1/Story.java
 import package02.SuperMonster;
 import package03.SuperWeapon;
 import package03.Weapon_Knife;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Story {
+<<<<<<< HEAD:src/package01/Story.java
     static RoomGame game;
     static UI ui;
     static VisibilityManager vm;
@@ -35,6 +39,32 @@ public class Story {
     static SuperMonster curMonster;
     static int[] progressKey = new int[3];
     
+=======
+    RoomGame game;
+    UI ui;
+    VisibilityManager vm;
+    Player player = new Player();
+    RandomEncounter encounter = new RandomEncounter();
+
+    
+    //-----------------------Start of progressKey Vals-----------------------
+    int candle = 0;
+    int trapDoorKey = 0;
+    int gem = 0;
+    int hiddenWpn = 0;
+    int enteredLeft = 0;
+    static int hasTalisman = 1;
+    static int hasMap = 0;
+    
+    static int[] progressKey = new int[2];
+    progressKey[0] = hasTalisman;
+	progressKey[1] = hasMap;
+    //We also need to include player.hp
+    
+    //-----------------------End of progressKey Vals-------------------------
+    String location;
+    SuperMonster curMonster;
+>>>>>>> e4b81770071cb1e2cdaad117485d187231564dd6:src/package1/Story.java
 
     public Story(RoomGame g, UI userInterface, VisibilityManager vManager){
         game = g;
@@ -116,7 +146,29 @@ public class Story {
         ui.item5.setText("");
     }
 
+<<<<<<< HEAD:src/package01/Story.java
     public static void selectPosition(String nextPosition){
+=======
+    public static String createProgressKey() {
+    	String progressKeyString = "";
+    	for (int i = 0; i < progressKey.length ; ++i) {
+    		progressKeyString = progressKeyString + String.valueOf(progressKey[i]);
+    	}
+    	
+    	return progressKeyString;
+    }
+    
+    public static void readProgressKey(String progressKeyString) {
+    	for (int i = 0; i < progressKeyString.length() ; ++i) {
+    		progressKey[i] = progressKeyString.charAt(i);
+    	}
+    	
+    	System.out.println(hasMap);
+    	System.out.println(hasTalisman);
+    }
+    
+    public void selectPosition(String nextPosition){ //Location parser on loadup
+>>>>>>> e4b81770071cb1e2cdaad117485d187231564dd6:src/package1/Story.java
         switch(nextPosition){
             //    LEFT DOOR
             case "dungeonEntrance":
@@ -249,18 +301,18 @@ public class Story {
         }
        
 
-        ui.mainTextArea.setText("You Entered into the main dungeon room.\nYou see three doors ahead of you...");
+        ui.mainTextArea.setText("You Entered into the main dungeon room.\nYou see three doors scattered around you...");
         ui.outputTextArea.setText("You can choose which door to enter or exit.");
 
 
         ui.northBtn.setText("North");
         ui.eastBtn.setText("East");
-        ui.southBtn.setText("South");
+        ui.southBtn.setText("");
         ui.westBtn.setText("West");
 
         game.nextPosition1 = "middleDoor";
         game.nextPosition2 = "rightDoor";
-        game.nextPosition3 = "exit";
+        game.nextPosition3 = "";
         game.nextPosition4 = "leftDoor";
        }
 
@@ -273,12 +325,12 @@ public class Story {
 
         ui.northBtn.setText("North");
         ui.eastBtn.setText("East");
-        ui.southBtn.setText("South");
+        ui.southBtn.setText("");
         ui.westBtn.setText("West");
 
         game.nextPosition1 = "middleDoor";
         game.nextPosition2 = "rightDoor";
-        game.nextPosition3 = "exit";
+        game.nextPosition3 = "";
         game.nextPosition4 = "leftDoor";
         }
 
@@ -586,6 +638,7 @@ public class Story {
 
 
 
+<<<<<<< HEAD:src/package01/Story.java
 
 //  North DOOR         Middle DOOR                  Middle DOOR                  Middle DOOR         ------------------------
 //  North DOOR         Middle DOOR                  Middle DOOR                  Middle DOOR         ------------------------
@@ -847,6 +900,44 @@ public class Story {
 	}
 	
 	public static void rightTable() {
+=======
+//    RIGHT DOOR
+    public void rightDoor() {
+    	if (hasTalisman != 1) {
+    		ui.mainTextArea.setText("As you push open the right door... \n" + 
+    	                            "You find that it's too dark to make out anything. May be best to turn back around and return once you found a light source.\n");
+    	
+    		ui.northBtn.setText("");
+    		ui.eastBtn.setText("");
+    		ui.southBtn.setText("South");
+    		ui.westBtn.setText("");
+    		
+    		game.nextPosition1 = "";
+    		game.nextPosition2 = "";
+    		game.nextPosition3 = "mainRoom";
+    		game.nextPosition4 = "";
+    	} else {
+    		ui.mainTextArea.setText("As you push open the right door... \n" + 
+    	                            "The talisman in your bag shines brightly and illumnates the space around you.\n" +
+                                    "As you take out the talisman out of your bag, a table with a large map laid atop of it comes into view.\n" );
+    		
+    		ui.outputTextArea.setText("Head North to interact with the table.");
+    		
+    		ui.northBtn.setText("North");
+    		ui.eastBtn.setText("");
+    		ui.southBtn.setText("South");
+    		ui.westBtn.setText("");
+    		
+    		game.nextPosition1 = "rightTable";
+    		game.nextPosition2 = "";
+    		game.nextPosition3 = "mainRoom";
+    		game.nextPosition4 = "";
+    		
+    	}
+    }
+    
+    public void rightTable() {
+>>>>>>> e4b81770071cb1e2cdaad117485d187231564dd6:src/package1/Story.java
     	if (hasMap != 1) {
     		ui.mainTextArea.setText("You decide to approach the old dusty table in front of you...\n" +
     	                            "As you step closer, you begin to make out the drawings on the map. This is a map of a huge lake!");
@@ -879,8 +970,12 @@ public class Story {
     	}
     }
     
+<<<<<<< HEAD:src/package01/Story.java
 	  
     public static void rightTableNoMap() {
+=======
+    public void rightTableNoMap() {
+>>>>>>> e4b81770071cb1e2cdaad117485d187231564dd6:src/package1/Story.java
     	ui.outputTextArea.setText("You decide to not take the map.");
     	
     	ui.northBtn.setText(">");
@@ -894,11 +989,19 @@ public class Story {
 		game.nextPosition4 = "";
     }
     
+<<<<<<< HEAD:src/package01/Story.java
     public static void receiveMap() {
     	ui.outputTextArea.setText("You have received a map of the 'Secret Lake'");
     	
     	hasMap = 1;
     	ui.item5.setText("Map");
+=======
+    public void receiveMap() {
+    	ui.outputTextArea.setText("You have received a map of the 'Secret Lake'");
+    	
+    	hasMap = 1;
+    	ui.item4.setText("Map");
+>>>>>>> e4b81770071cb1e2cdaad117485d187231564dd6:src/package1/Story.java
     	
     	ui.northBtn.setText(">");
 		ui.eastBtn.setText("");
@@ -910,6 +1013,14 @@ public class Story {
 		game.nextPosition3 = "";
 		game.nextPosition4 = "";
     }
+<<<<<<< HEAD:src/package01/Story.java
+=======
+    public static void main(String [] args) {
+    	String progressKey = "30";
+    	
+    	readProgressKey(progressKey);
+    }
+>>>>>>> e4b81770071cb1e2cdaad117485d187231564dd6:src/package1/Story.java
 }
 
 //Frame LOCATIONS
