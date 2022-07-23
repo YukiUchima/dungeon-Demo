@@ -5,10 +5,10 @@ import java.util.Random;
 public abstract class SuperMonster {
     Random rand = new Random();
     protected String name;
-    private String charClass;
     private int strength;
     private int health;
     private int defense;
+    private String attackMsg;
 
     //NAME
     public void setName(String n1) {
@@ -19,15 +19,14 @@ public abstract class SuperMonster {
         return name;
     }
 
-    public void setCharClass(String charType) {
-        charClass = charType;
-    }
-
-    public String getCharClass() {
-        return charClass;
-    }
     //DEFENSE
 
+    public void setAttackMsg(String msg){
+        attackMsg = msg;
+    }
+    public String getAttackMsg(){
+        return attackMsg;
+    }
     public void setDefense() {
         this.defense = 1 + rand.nextInt(8);  //adds randomness
     }
@@ -59,22 +58,18 @@ public abstract class SuperMonster {
     }
 
     public int attack() {
-        return strength;
+        Random rand = new Random();
+        return rand.nextInt(strength);
     }
 
     public void hit(int points) {
         health = health - points;
     }
-
-    public boolean isAlive() {
-        return health > 0;
-    }
-
-    public abstract String classType();     //description unique to each type
+    public abstract String classDesc();
 
     @Override
     public String toString() {
-        return classType() + "\n\t\t+Strength: " + getStrength() + "\n\t\t+Health: " + getHealth() +
+        return getName() + "\n\t" + classDesc() + "\n\t\t+Strength: " + getStrength() + "\n\t\t+Health: " + getHealth() +
                 "\n\t\t+Defense: " + getDefense() + "\n";
     }
 }

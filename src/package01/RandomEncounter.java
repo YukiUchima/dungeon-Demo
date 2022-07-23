@@ -1,6 +1,8 @@
 package package01;
 
-import package02.monsters.Monster_HoopSnake;
+import package02.monsters.Boss_Troll;
+import package02.monsters.Monster1;
+import package02.monsters.Monster2;
 import package02.monsters.SuperMonster;
 
 import javax.management.MalformedObjectNameException;
@@ -13,27 +15,21 @@ public class RandomEncounter {
 
     public void monsterSetup() {
 //        Assigning various monsters to choose from randomly
-        Random rand = new Random();
-
         monsters = new ArrayList<>();
 
-        Monster_HoopSnake hoopSnake1 = new Monster_HoopSnake("Monster1");
-        Monster_HoopSnake hoopSnake2 = new Monster_HoopSnake("secondMOnster");
-        Monster_HoopSnake hoopSnake3 = new Monster_HoopSnake("ThirdMOnster");
-        Monster_HoopSnake hoopSnake4 = new Monster_HoopSnake("4thMOnster");
-        Monster_HoopSnake hoopSnake5 = new Monster_HoopSnake("5thMonster");
+        Monster1 basilisk1 = new Monster1();
+        Monster2 toxicMush = new Monster2();
 
-        monsters.add(hoopSnake1);
-        monsters.add(hoopSnake2);
-        monsters.add(hoopSnake3);
-        monsters.add(hoopSnake4);
-        monsters.add(hoopSnake5);
+        monsters.add(basilisk1);
+        monsters.add(toxicMush);
+
     }
 
     public boolean monsterSpawned(){
         Random rand = new Random();
         int chance = rand.nextInt(100);
-        if(chance > 75){return true;}
+        if(chance > 50){
+            return true;}
         return false;
     }
 

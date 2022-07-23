@@ -1,5 +1,7 @@
 package package01;
 
+import java.awt.*;
+
 public class VisibilityManager {
     UI ui;
 
@@ -43,11 +45,24 @@ public class VisibilityManager {
 
     }
 
-    public void manualInput(){
+    public void showGameOver(){
 //        Hide button choices
-        ui.commandPanel.setVisible(false);
+        ui.gameTitleLbl.setText("GAME OVER");
+        ui.gameTitleLbl.setForeground(Color.red);
+        ui.gameTitleLbl.setBackground(Color.darkGray);
 
-//        Show Input Text Area
+        ui.gameTitlePanel.setVisible(true);
+        ui.usernamePanel.setVisible(false);
+        ui.passwordPanel.setVisible(false);
+        ui.signPanel.setVisible(false);
+
+        ui.mainPanel.setVisible(false);
+        ui.playerPanel.setVisible(false);
+        ui.statsPanel.setVisible(false);
+        ui.inventoryPanel.setVisible(false);
+        ui.outputPanel.setVisible(false);
+        ui.commandPanel.setVisible(false);
+        ui.savePanel.setVisible(false);
 
     }
 }

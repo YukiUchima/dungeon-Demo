@@ -32,7 +32,7 @@ public class UI {
     Font inventoryFont = new Font("Times New Roman", Font.BOLD, 28);
 
     Border border = new LineBorder(Color.white, 2, true);
-    Border inventoryBorder = new LineBorder(Color.lightGray, 1, true);
+    Border inventoryBorder = new LineBorder(Color.blue, 1, true);
 
 
     public void createUI(RoomGame.ChoiceHandler msHandler) {
@@ -63,7 +63,7 @@ public class UI {
         gameTitlePanel.setBackground(Color.yellow);
 
         gameTitleLbl = new JLabel();
-        gameTitleLbl.setText("Dungeons are so 90's");
+        gameTitleLbl.setText("CSC205-Project");
         gameTitleLbl.setForeground(Color.black);
         gameTitleLbl.setFont(titleFont);
         gameTitlePanel.add(gameTitleLbl);
@@ -195,7 +195,7 @@ public class UI {
 //         `````````````````````````````````````````````````INVENTORY Panel````````````````````````````````````````````
         inventoryTitleLabel = new JLabel("Inventory", SwingConstants.CENTER);
         inventoryTitleLabel.setBounds(40,120, 320, 40);
-        inventoryTitleLabel.setBackground(Color.lightGray);
+        inventoryTitleLabel.setBackground(Color.black);
         inventoryTitleLabel.setForeground(Color.white);
         inventoryTitleLabel.setFont(inventoryFont);
         inventoryTitleLabel.setBorder(inventoryBorder);
@@ -203,71 +203,58 @@ public class UI {
 
         inventoryPanel = new JPanel();
          inventoryPanel.setBounds(40,160, 320, 200);
-         inventoryPanel.setBackground(Color.yellow);
-         inventoryPanel.setForeground(Color.white);
+         inventoryPanel.setBackground(Color.lightGray);
+         inventoryPanel.setForeground(Color.black);
          inventoryPanel.setLayout(new GridLayout(4,3));
 //         inventoryPanel.setBorder(inventoryBorder);
          playerPanel.add(inventoryPanel);
 
 
-         item1 = new JLabel("Telephone", SwingConstants.CENTER);
-         item1.setFont(itemFont);
-         item1.setForeground(Color.blue);
-         item1.setBorder(inventoryBorder);
+        item1 = new JLabel("1-1", SwingConstants.CENTER);
+        item1.setFont(itemFont);
+        item1.setForeground(Color.blue);
+        item1.setBorder(inventoryBorder);
 
-         item2 = new JLabel("Telephone", SwingConstants.CENTER);
-         item2.setFont(itemFont);
-         item2.setForeground(Color.blue);
-         item2.setBorder(inventoryBorder);
+        item2 = new JLabel("2-1", SwingConstants.CENTER);
+        item2.setFont(itemFont);
+        item2.setForeground(Color.blue);
+        item2.setBorder(inventoryBorder);
 
-         item3 = new JLabel("Telephone", SwingConstants.CENTER);
-         item3.setFont(itemFont);
-         item3.setForeground(Color.blue);
-         item3.setBorder(inventoryBorder);
+        item3 = new JLabel("1-2", SwingConstants.CENTER);
+        item3.setFont(itemFont);
+        item3.setForeground(Color.blue);
+        item3.setBorder(inventoryBorder);
 
-         item4 = new JLabel("Telephone", SwingConstants.CENTER);
-         item4.setFont(itemFont);
-         item4.setForeground(Color.blue);
-         item4.setBorder(inventoryBorder);
+        item4 = new JLabel("2-2", SwingConstants.CENTER);
+        item4.setFont(itemFont);
+        item4.setForeground(Color.blue);
+        item4.setBorder(inventoryBorder);
 
-         item5 = new JLabel("");
-         item5.setFont(normalFont);
-         item5.setBorder(inventoryBorder);
+        item5 = new JLabel("1-3");
+        item5.setFont(normalFont);
+        item5.setBorder(inventoryBorder);
 
-         item6 = new JLabel("");
-         item6.setFont(normalFont);
-         item6.setBorder(inventoryBorder);
+        item6 = new JLabel("2-3");
+        item6.setFont(normalFont);
+        item6.setBorder(inventoryBorder);
 
-         item7 = new JLabel("");
-         item7.setFont(normalFont);
-         item7.setBorder(inventoryBorder);
+        item7 = new JLabel("1-4");
+        item7.setFont(normalFont);
+        item7.setBorder(inventoryBorder);
 
-         item8 = new JLabel("");
-         item8.setFont(normalFont);
-         item8.setBorder(inventoryBorder);
+        item8 = new JLabel("2-4");
+        item8.setFont(normalFont);
+        item8.setBorder(inventoryBorder);
 
-         item8.setFont(normalFont);
-         item8 = new JLabel("");
-         item8.setBorder(inventoryBorder);
-
-         item8 = new JLabel("");
-         item8.setFont(normalFont);
-         item8.setBorder(inventoryBorder);
-
-         item8 = new JLabel("");
-         item8.setFont(normalFont);
-         item8.setBorder(inventoryBorder);
-
+        inventoryPanel.add(item1);
+        inventoryPanel.add(item2);
+        inventoryPanel.add(item3);
+        inventoryPanel.add(item4);
 
         inventoryPanel.add(item5);
         inventoryPanel.add(item6);
-        inventoryPanel.add(item1);
-        inventoryPanel.add(item2);
-
         inventoryPanel.add(item7);
         inventoryPanel.add(item8);
-        inventoryPanel.add(item3);
-        inventoryPanel.add(item4);
 
 //         `````````````````````````````````````````````````OUTPUT Panel```````````````````````````````````````````````
          outputPanel = new JPanel();
